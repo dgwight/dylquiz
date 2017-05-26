@@ -1,0 +1,47 @@
+<nav class="navbar navbar-widget navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="navbar-link">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <a class="navbar-brand" href="#">Choose Widget</a>
+    </div>
+</nav>
+
+<div class="container">
+    <ul class="list-group">
+        <li><a ng-click="model.createWidget({'widgetType': 'HEADING'})">
+            Header
+        </a></li>
+        <li><a>
+            Label
+        </a></li>
+        <li><a>
+            HTML
+        </a></li>
+        <li><a >
+            Text Input
+        </a></li>
+        <li><a>
+            Link
+        </a></li>
+        <li><a>
+            Button
+        </a></li>
+        <li><a ng-click="model.createWidget({'widgetType': 'IMAGE'})">
+            Image
+        </a></li>
+        <li><a ng-click="model.createWidget({'widgetType': 'YOUTUBE'})">
+            Youtube
+        </a></li>
+        <li><a>
+            Data Table
+        </a></li>
+        <li><a>
+            Repeater
+        </a></li>
+    </ul>
+</div>
+
+<ng-include src="'views/common/footer.view.client.html'"></ng-include>

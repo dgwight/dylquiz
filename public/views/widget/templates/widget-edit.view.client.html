@@ -1,0 +1,71 @@
+<nav class="navbar navbar-widget navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.uid}}/website/{{model.wid}}/page/{{model.pid}}/widget" class="navbar-link">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <a class="navbar-brand" href="#">Widget Edit</a>
+        <div class="navbar-text pull-right">
+            <a ng-click="model.updateWidget(model.widget)" class="navbar-link">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <section class="intro">
+        <div class="col-xs-3 hidden-xs sidebar">
+            <ul class="list-group">
+                <li><a ng-click="model.createWidget({'widgetType': 'HEADING'})">
+                    Header
+                </a></li>
+                <li><a>
+                    Label
+                </a></li>
+                <li><a>
+                    HTML
+                </a></li>
+                <li><a >
+                    Text Input
+                </a></li>
+                <li><a>
+                    Link
+                </a></li>
+                <li><a>
+                    Button
+                </a></li>
+                <li><a ng-click="model.createWidget({'widgetType': 'IMAGE'})">
+                    Image
+                </a></li>
+                <li><a ng-click="model.createWidget({'widgetType': 'YOUTUBE'})">
+                    Youtube
+                </a></li>
+                <li><a>
+                    Data Table
+                </a></li>
+                <li><a>
+                    Repeater
+                </a></li>
+            </ul>
+        </div>
+        <div class="col-xs-12 col-sm-9">
+            <div ng-switch="model.widget.widgetType">
+                <div ng-switch-when="HEADING">
+                    <ng-include src="'views/widget/templates/widget-heading-edit.view.client.html'"></ng-include>
+                </div>
+                <div ng-switch-when="IMAGE">
+                    <ng-include src="'views/widget/templates/widget-image-edit.view.client.html'"></ng-include>
+                </div>
+                <div ng-switch-when="YOUTUBE">
+                    <ng-include src="'views/widget/templates/widget-youtube-edit.view.client.html'"></ng-include>
+                </div>
+            </div>
+            <a class="btn btn-danger btn-block"
+               ng-click="model.deleteWidget()">Delete</a>
+        </div>
+    </section>
+</div>
+
+<ng-include src="'views/common/footer.view.client.html'"></ng-include>
