@@ -16,4 +16,4 @@ Deployment: https://wight-dylan-webdev.herokuapp.com/
 # Project
 The repository for assignments done in CS 4550: Web Development, taken Summer 1 2017 at Northern University. 
 Github: https://github.com/dylangwight/dylquiz
-Deployment: https://wight-dylan-webdev.herokuapp.com/
+Deployment: https://dylquiz.herokuapp.com/
