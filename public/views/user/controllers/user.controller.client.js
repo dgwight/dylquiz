@@ -3,7 +3,7 @@
  */
 (function () {
     angular
-        .module("WebAppMaker")
+        .module("DylQuiz")
         .controller("LoginController", LoginController)
         .controller("RegisterController", RegisterController)
         .controller("ProfileController", ProfileController);

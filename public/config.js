@@ -3,18 +3,18 @@
  */
 (function () {
     angular
-        .module("WebAppMaker")
+        .module("DylQuiz")
         .config(Config);
     function Config($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "views/user/templates/login.view.client.html",
-                controller: "LoginController",
+                templateUrl: "views/quiz/templates/home-page.view.client.html",
+                controller: "HomePageController",
                 controllerAs: "model"
             })
-            .when("default", {
-                templateUrl: "views/user/templates/login.view.client.html",
-                controller: "LoginController",
+            .when("/home", {
+                templateUrl: "views/quiz/templates/home-page.view.client.html",
+                controller: "HomePageController",
                 controllerAs: "model"
             })
             .when("/login", {
@@ -32,49 +32,19 @@
                 controller: "ProfileController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/website", {
-                templateUrl: "views/website/templates/website-list.view.client.html",
-                controller: "WebsiteListController",
+            .when("/user/:uid/quiz", {
+                templateUrl: "views/quiz/templates/quiz-new.view.client.html",
+                controller: "NewQuizController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/website/new", {
-                templateUrl: "views/website/templates/website-new.view.client.html",
-                controller: "NewWebsiteController",
+            .when("/user/:uid/quiz/new", {
+                templateUrl: "views/quiz/templates/quiz-new.view.client.html",
+                controller: "NewQuizController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/website/:wid", {
-                templateUrl: "views/website/templates/website-edit.view.client.html",
-                controller: "EditWebsiteController",
-                controllerAs: "model"
-            })
-            .when("/user/:uid/website/:wid/page", {
-                templateUrl: "views/page/templates/page-list.view.client.html",
-                controller: "PageListController",
-                controllerAs: "model"
-            })
-            .when("/user/:uid/website/:wid/page/new", {
-                templateUrl: "views/page/templates/page-new.view.client.html",
-                controller: "NewPageController",
-                controllerAs: "model"
-            })
-            .when("/user/:uid/website/:wid/page/:pid", {
-                templateUrl: "views/page/templates/page-edit.view.client.html",
-                controller: "EditPageController",
-                controllerAs: "model"
-            })
-            .when("/user/:uid/website/:wid/page/:pid/widget", {
-                templateUrl: "views/widget/templates/widget-list.view.client.html",
-                controller: "WidgetListController",
-                controllerAs: "model"
-            })
-            .when("/user/:uid/website/:wid/page/:pid/widget/new", {
-                templateUrl: "views/widget/templates/widget-chooser.view.client.html",
-                controller: "NewWidgetController",
-                controllerAs: "model"
-            })
-            .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
-                templateUrl: "views/widget/templates/widget-edit.view.client.html",
-                controller: "EditWidgetController",
+            .otherwise({
+                templateUrl: "views/quiz/templates/home-page.view.client.html",
+                controller: "LoginController",
                 controllerAs: "model"
             })
     }

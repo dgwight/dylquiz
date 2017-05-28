@@ -3,9 +3,11 @@
  */
 (function () {
     angular
-        .module("WebAppMaker")
-        .factory("PageService", PageService);
-    function PageService() {
+        .module("DylQuiz")
+        .factory("QuizService", QuizService);
+
+    function QuizService() {
+
         var pages = [
             {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem"},
             {"_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem"},
@@ -16,9 +18,14 @@
             "findPageByWebsiteId": findPageByWebsiteId,
             "findPageById": findPageById,
             "updatePage": updatePage,
-            "deletePage": deletePage
+            "deletePage": deletePage,
+            "list": list
         };
         return api;
+
+        function list() {
+            return pages;
+        }
 
         function createPage(websiteId, page) {
             page._id = page._id ? page._id : new Date().getTime() + "";

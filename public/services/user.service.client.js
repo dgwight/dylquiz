@@ -3,7 +3,7 @@
  */
 (function () {
     angular
-        .module("WebAppMaker")
+        .module("DylQuiz")
         .factory("UserService", UserService);
 
     function UserService() {
