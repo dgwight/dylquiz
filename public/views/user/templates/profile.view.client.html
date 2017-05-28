@@ -1,40 +1,40 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-dylquiz navbar-fixed-top">
     <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a class="navbar-brand" href="#">
-                Profile
+                <span><img alt="DylQuizLogo" src="images/DylQuizLogo.png" width="25px"></span>
+                DylQuiz
             </a>
-            <p class="navbar-text pull-right">
-                <a ng-click="model.update(model.user)" class="navbar-link">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            </p>
+            <!--<a class="navbar-brand" href="#"></a>-->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Create</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search...">
+            </form>
+        </div>
     </div>
 </nav>
 
+
 <div class="container">
-    <form>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="Username">
-        </div>
-        <div class="form-group">
-            <label for="email">Email address</label>
-            <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
-        </div>
-        <div class="form-group">
-            <label for="first-name">First Name</label>
-            <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="Alice">
-        </div>
-        <div class="form-group">
-            <label for="last-name">Last Name</label>
-            <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="Wonderland">
-        </div>
-    </form>
-
-    <a class="btn btn-primary btn-block"
-       href="#/user/{{model.user._id}}/website">Websites</a>
-    <a class="btn btn-danger  btn-block"
-       href="#/login">Logout</a>
+    <h2>Simple Collapsible</h2>
+    <p>Click on the button to toggle between showing and hiding content.</p>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button>
+    <div id="demo" class="collapse">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </div>
 </div>
-
-<ng-include src="'views/common/footer.view.client.html'"></ng-include>
