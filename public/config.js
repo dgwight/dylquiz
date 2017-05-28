@@ -42,6 +42,11 @@
                 controller: "NewQuizController",
                 controllerAs: "model"
             })
+            .when("/user/:uid/quiz/:qid/youares", {
+                templateUrl: "views/quiz/templates/nq-youares.view.client.html",
+                controller: "NewQuizController",
+                controllerAs: "model"
+            })
             .otherwise({
                 templateUrl: "views/quiz/templates/home-page.view.client.html",
                 controller: "LoginController",

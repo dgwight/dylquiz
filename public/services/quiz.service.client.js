@@ -8,62 +8,62 @@
 
     function QuizService() {
 
-        var pages = [
-            {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem"},
-            {"_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem"},
-            {"_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem"}
+        var quizzes = [
+            {"_id": "321", "name": "Post 1", "userId": "123", "description": "Lorem"},
+            {"_id": "432", "name": "Post 2", "userId": "123", "description": "Lorem"},
+            {"_id": "543", "name": "Post 3", "userId": "123", "description": "Lorem"}
         ];
         var api = {
-            "createPage": createPage,
-            "findPageByWebsiteId": findPageByWebsiteId,
-            "findPageById": findPageById,
-            "updatePage": updatePage,
-            "deletePage": deletePage,
-            "list": list
+            "listQuizzes": listQuizzes,
+            "createQuiz": createQuiz,
+            "findQuizByUserId": findQuizByUserId,
+            "findQuizById": findQuizById,
+            "updateQuiz": updateQuiz,
+            "deleteQuiz": deleteQuiz,
         };
         return api;
 
-        function list() {
-            return pages;
+        function listQuizzes() {
+            return quizzes;
         }
 
-        function createPage(websiteId, page) {
-            page._id = page._id ? page._id : new Date().getTime() + "";
-            page.websiteId = websiteId;
-            pages.push(page);
-            return page;
+        function createQuiz(userId, quiz) {
+            quiz._id = quiz._id ? quiz._id : new Date().getTime() + "";
+            quiz.userId = userId;
+            quizzes.push(quiz);
+            return quiz;
         }
 
-        function findPageByWebsiteId(websiteId) {
-            var websitePages = [];
-            for (var i = 0; i < pages.length; i++) {
-                if (pages[i].websiteId === websiteId)
-                    websitePages.push(pages[i]);
+        function findQuizByUserId(websiteId) {
+            var userQuizzes = [];
+            for (var i = 0; i < quizzes.length; i++) {
+                if (quizzes[i].websiteId === websiteId)
+                    userQuizzes.push(quizzes[i]);
             }
-            return websitePages;
+            return userQuizzes;
         }
 
-        function findPageById(pageId) {
-            for (var i = 0; i < pages.length; i++) {
-                if (pages[i]._id === pageId)
-                    return pages[i];
+        function findQuizById(quizId) {
+            for (var i = 0; i < quizzes.length; i++) {
+                if (quizzes[i]._id === quizId)
+                    return quizzes[i];
             }
             return null;
         }
 
-        function updatePage(pageId, page) {
-            for (var i = 0; i < pages.length; i++) {
-                if (pages[i]._id === pageId) {
-                    pages[i] = page;
-                    return pages[i];
+        function updateQuiz(quizId, quiz) {
+            for (var i = 0; i < quizzes.length; i++) {
+                if (quizzes[i]._id === quizId) {
+                    quizzes[i] = quiz;
+                    return quizzes[i];
                 }
             }
         }
 
-        function deletePage(pageId) {
-            for (var i = 0; i < pages.length; i++) {
-                if (pages[i]._id === pageId) {
-                    pages.splice(i, 1);
+        function deleteQuiz(quizId) {
+            for (var i = 0; i < quizzes.length; i++) {
+                if (quizzes[i]._id === quizId) {
+                    quizzes.splice(i, 1);
                 }
             }
         }
