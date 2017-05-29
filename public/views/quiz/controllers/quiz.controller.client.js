@@ -21,7 +21,7 @@
 
         function init() {
             vm.quizzes = QuizService.listQuizzes();
-            vm.youares = YouAreService.listYouAres();
+            vm.youares = YouAreService.filterYouAreByQuizId("123");
         }
         init();
     }
