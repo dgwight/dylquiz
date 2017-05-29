@@ -4,68 +4,24 @@
 (function () {
     angular
         .module("DylQuiz")
-        .factory("QuizService", QuizService);
+        .factory("QuizService", function (CommonService) {
 
-    function QuizService() {
+            var api = Object.create(CommonService);
+            api.findByUserId = findByUserId;
+            api.setObjects([
+                {_id: "123", username: "alice", password: "alice", firstName: "Alice", lastName: "Wonder"},
+                {_id: "234", username: "bob", password: "bob", firstName: "Bob", lastName: "Marley"},
+                {_id: "345", username: "charly", password: "charly", firstName: "Charly", lastName: "Garcia"},
+                {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose", lastName: "Annunzi"}
+            ]);
 
-        var quizzes = [
-            {"_id": "321", "name": "Post 1", "userId": "123", "description": "Lorem"},
-            {"_id": "432", "name": "Post 2", "userId": "123", "description": "Lorem"},
-            {"_id": "543", "name": "Post 3", "userId": "123", "description": "Lorem"}
-        ];
-        var api = {
-            "listQuizzes": listQuizzes,
-            "createQuiz": createQuiz,
-            "findQuizByUserId": findQuizByUserId,
-            "findQuizById": findQuizById,
-            "updateQuiz": updateQuiz,
-            "deleteQuiz": deleteQuiz,
-        };
-        return api;
+            return api;
 
-        function listQuizzes() {
-            return quizzes;
-        }
-
-        function createQuiz(userId, quiz) {
-            quiz._id = quiz._id ? quiz._id : new Date().getTime() + "";
-            quiz.userId = userId;
-            quizzes.push(quiz);
-            return quiz;
-        }
-
-        function findQuizByUserId(websiteId) {
-            var userQuizzes = [];
-            for (var i = 0; i < quizzes.length; i++) {
-                if (quizzes[i].websiteId === websiteId)
-                    userQuizzes.push(quizzes[i]);
+            function findByUserId(userId) {
+                return api.filter(function (quiz) {
+                    return quiz.userId === userId;
+                });
             }
-            return userQuizzes;
-        }
-
-        function findQuizById(quizId) {
-            for (var i = 0; i < quizzes.length; i++) {
-                if (quizzes[i]._id === quizId)
-                    return quizzes[i];
-            }
-            return null;
-        }
-
-        function updateQuiz(quizId, quiz) {
-            for (var i = 0; i < quizzes.length; i++) {
-                if (quizzes[i]._id === quizId) {
-                    quizzes[i] = quiz;
-                    return quizzes[i];
-                }
-            }
-        }
-
-        function deleteQuiz(quizId) {
-            for (var i = 0; i < quizzes.length; i++) {
-                if (quizzes[i]._id === quizId) {
-                    quizzes.splice(i, 1);
-                }
-            }
-        }
-    }
+        })
 })();
+

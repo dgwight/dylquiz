@@ -1,19 +1,14 @@
 /**
  * Created by DylanWight on 5/29/17.
  */
-/**
- * Created by DylanWight on 5/23/17.
- */
 (function () {
     angular
         .module("DylQuiz")
-        .factory("CommonService", CommonService);
-
-    function CommonService() {
+        .factory("CommonService", function () {
 
         var objects = [];
 
-        var api = {
+        return {
             "setObjects": setObjects,
             "listAll": listAll,
             "create": create,
@@ -22,14 +17,12 @@
             "update": update,
             "remove": remove
         };
-        return api;
 
         function setObjects(newObjects) {
             objects = newObjects;
         }
 
         function listAll() {
-            console.log("listAll", objects.length);
             return objects;
         }
 
@@ -57,9 +50,13 @@
         }
 
         function update(id, object) {
+            console.log("update", object);
+            console.log("update", objects.length);
+
             for (var i = 0; i < objects.length; i++) {
                 if (objects[i]._id === id) {
                     objects[i] = object;
+                    console.log("update", objects.length);
                     return objects[i];
                 }
             }
@@ -72,5 +69,5 @@
                 }
             }
         }
-    }
+    });
 })();
