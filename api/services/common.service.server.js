@@ -2,7 +2,7 @@
  * Created by DylanWight on 5/31/17.
  */
 var _ = require('lodash');
-function CommonService(app, model, objectName, objects) {
+function CommonService(app, Model, objectName, objects) {
 
     app.get('/api/' + objectName, findByParams);
     app.post('/api/' + objectName, create);
@@ -24,22 +24,18 @@ function CommonService(app, model, objectName, objects) {
     return api;
 
     function getById(id) {
-        for (var i = 0; i < objects.length; i++) {
-            if (objects[i]._id === id) {
-                return objects[i];
-            }
-        }
+        Model.findById(id, function(err, object) {
+            if (err)
+                return null;
+            return(object);
+        });
     }
 
     function create(req, res) {
         console.log("create", objectName);
         console.log(req.body);
-        var newObject = req.body;
 
-        // var frodo = new model(newObject);
-        // res.json(frodo.toJSON());
-
-        model.create(newObject, function(error, doc) {
+        Model.create(req.body, function(error, doc) {
             console.log(error);
             console.log(doc);
             res.json(doc);
@@ -57,7 +53,7 @@ function CommonService(app, model, objectName, objects) {
 
     function findOneByParams(req, res) {
         console.log("findOneByParams", objectName, req.query);
-        model.findOne(_.omit(req.query,"findOne"), function(err, object) {
+        Model.findOne(_.omit(req.query, "findOne"), function(err, object) {
             if (err) {
                 res.send(err);
             } else {
@@ -68,7 +64,7 @@ function CommonService(app, model, objectName, objects) {
 
     function findAllByParams(req, res) {
         console.log("findAllByParams", objectName, req.query);
-        model.find(req.query, function(err, objects) {
+        Model.find(req.query, function(err, objects) {
             if (err) {
                 res.send(err);
             } else {
@@ -79,43 +75,36 @@ function CommonService(app, model, objectName, objects) {
 
     function findById(req, res) {
         console.log("update", objectName, req.params);
-        model.findById(req.params.id, function(err, post) {
+        Model.findById(req.params.id, function(err, object) {
             if (err)
                 res.send(err);
-            res.json(post);
+            res.json(object);
         });
     }
 
     function update(req, res) {
         console.log("update", objectName);
         console.log(req.body);
-
         var id = req.params.id;
-        var newUser = req.body;
-        newUser._id = id;
-
-        for (var i = 0; i < objects.length; i++) {
-            if (objects[i]._id === id) {
-                objects[i] = newUser;
-                res.json(objects[i]);
-                return;
+        Model.findByIdAndUpdate(id, req.body, function(err, object) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.json(object);
             }
-        }
-        res.sendStatus(404);
+        });
     }
 
     function remove(req, res) {
         console.log("delete", objectName, req.params.id);
         var id = req.params.id;
-
-        for (var i = 0; i < objects.length; i++) {
-            if (objects[i]._id === id) {
-                var deletedUser = objects.splice(i, 1)[0];
-                res.json(deletedUser);
-                return;
+        Model.findByIdAndRemove(id, function(err, object) {
+            if (err) {
+                res.send(err);
+            } else {
+                res.json(object);
             }
-        }
-        res.sendStatus(404);
+        });
     }
 }
 
