@@ -1,73 +1,81 @@
 /**
  * Created by DylanWight on 5/29/17.
  */
+/**
+ * Created by DylanWight on 5/31/17.
+ */
 (function () {
     angular
         .module("DylQuiz")
-        .factory("CommonService", function () {
+        .factory("CommonService", CommonService);
 
-        var objects = [];
+    function CommonService($http) {
 
-        return {
-            "setObjects": setObjects,
-            "listAll": listAll,
+        var objectName = "";
+
+        var api = {
+            "setObjectName": setObjectName,
             "create": create,
-            "filter": filter,
             "findById": findById,
+            "findByParams": findByParams,
+            "findOneByParams": findOneByParams,
             "update": update,
             "remove": remove
         };
+        return api;
 
-        function setObjects(newObjects) {
-            objects = newObjects;
-        }
-
-        function listAll() {
-            return objects;
+        function setObjectName(name) {
+            objectName = name;
         }
 
         function create(object) {
-            object._id = object._id ? object._id : new Date().getTime() + "";
-            objects.push(object);
-            return object;
-        }
-
-        function filter(filterer) {
-           var filteredObjects = [];
-            for (var i = 0; i < objects.length; i++) {
-                if (filterer(objects[i]))
-                    filteredObjects.push(objects[i]);
-            }
-            return filteredObjects;
+            var url = "/api/" + objectName + "/";
+            return $http.post(url, object)
+                .then(function (response) {
+                    console.log(response);
+                    return response.data;
+                });
         }
 
         function findById(id) {
-            for (var i = 0; i < objects.length; i++) {
-                if (objects[i]._id === id)
-                    return objects[i];
-            }
-            return null;
+            var url = "/api/" + objectName + "/" + id;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findByParams(params) {
+            var url = "/api/" + objectName + "?"
+                + Object.keys(params).map(function (key) {
+                    return key + "=" + params[key];
+                }).join('&');
+
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findOneByParams(params) {
+            params.findOne = true;
+            return findByParams(params);
         }
 
         function update(id, object) {
-            console.log("update", object);
-            console.log("update", objects.length);
-
-            for (var i = 0; i < objects.length; i++) {
-                if (objects[i]._id === id) {
-                    objects[i] = object;
-                    console.log("update", objects.length);
-                    return objects[i];
-                }
-            }
+            var url = "/api/" + objectName + "/" + id;
+            return $http.put(url, object)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         function remove(id) {
-            for (var i = 0; i < objects.length; i++) {
-                if (objects[i]._id === id) {
-                    objects.splice(i, 1);
-                }
-            }
+            var url = "/api/" + objectName + "/" + id;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
-    });
+    }
 })();

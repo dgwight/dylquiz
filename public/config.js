@@ -42,17 +42,17 @@
                 controller: "NewQuizController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/quiz/:qid/youares", {
+            .when("/user/:uid/quiz/:qid/question", {
                 templateUrl: "views/quiz/templates/nq-youares.view.client.html",
                 controller: "NewQuizController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/quiz/:qid/youares/new", {
+            .when("/user/:uid/quiz/:qid/question/new", {
                 templateUrl: "views/quiz/templates/nq-youares-new.view.client.html",
                 controller: "NewQuizController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/quiz/:qid/youares/:yid", {
+            .when("/user/:uid/quiz/:qid/question/:yid", {
                 templateUrl: "views/quiz/templates/nq-youares-edit.view.client.html",
                 controller: "NewQuizController",
                 controllerAs: "model"
