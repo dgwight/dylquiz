@@ -4,6 +4,7 @@
   "description": "Web Dev at Northeastern University",
   "main": "server.js",
   "dependencies": {
+    "@newrelic/native-metrics": "^2.1.1",
     "bluebird": "^3.5.0",
     "body-parser": "^1.15.1",
     "express": "^4.13.4",
