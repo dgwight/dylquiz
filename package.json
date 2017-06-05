@@ -9,7 +9,8 @@
     "express": "^4.13.4",
     "lodash": "^4.17.4",
     "mongojs": "^2.4.0",
-    "mongoose": "^4.4.15"
+    "mongoose": "^4.4.15",
+    "newrelic": "^1.39.1"
   },
   "devDependencies": {},
   "scripts": {

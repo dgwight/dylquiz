@@ -4,7 +4,6 @@
 function CommonService(Model) {
 
     var api = {
-        "test": "test",
         "model": Model,
         "find": find,
         "findById": findById,
