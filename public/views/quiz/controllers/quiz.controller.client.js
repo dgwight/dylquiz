@@ -11,7 +11,12 @@
         var vm = this;
 
         function init() {
-            vm.quizzes = QuizService.listQuizzes();
+            QuizService.find({})
+                .then(function(quizzes) {
+                    vm.quizzes = quizzes;
+                }).catch(function(error) {
+                    vm.alert = "Widget not found, please try again";
+                });
         }
         init();
     }
@@ -37,7 +42,7 @@
                 };
             }
 
-            vm.quizzes = QuizService.listAll();
+            // vm.quizzes = QuizService.;
             vm.youares = YouAreService.filterYouAreByQuizId(vm.qid);
         }
         init();

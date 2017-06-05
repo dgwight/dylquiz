@@ -17,8 +17,7 @@
             "setObjectName": setObjectName,
             "create": create,
             "findById": findById,
-            "findByParams": findByParams,
-            "findOneByParams": findOneByParams,
+            "find": find,
             "update": update,
             "remove": remove
         };
@@ -45,7 +44,7 @@
                 });
         }
 
-        function findByParams(params) {
+        function find(params) {
             var url = "/api/" + objectName + "?"
                 + Object.keys(params).map(function (key) {
                     return key + "=" + params[key];
@@ -55,11 +54,6 @@
                 .then(function (response) {
                     return response.data;
                 });
-        }
-
-        function findOneByParams(params) {
-            params.findOne = true;
-            return findByParams(params);
         }
 
         function update(id, object) {
