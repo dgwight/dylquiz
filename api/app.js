@@ -3,12 +3,12 @@
  */
 module.exports = function(app) {
 
-    var connectionString = 'mongodb://127.0.0.1:27017/dyl-quiz';
-
-    if(process.env.MLAB_USERNAME) {
-        connectionString = 'mongodb://' + process.env.MLAB_USERNAME + ':' + process.env.MLAB_PASSWORD
-            + "@ds149481.mlab.com:49481/heroku_spm670rv";
-    }
+    const connectionString = process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://127.0.0.1:27017/dyl-quiz';
+    //
+    // if(process.env.MONGODB_URI) {
+    //     connectionString = 'mongodb://' + process.env.MLAB_USERNAME + ':' + process.env.MLAB_PASSWORD
+    //         + "@ds149481.mlab.com:49481/heroku_spm670rv";
+    // }
 
     const mongoose = require("mongoose");
     mongoose.Promise = require('bluebird');
