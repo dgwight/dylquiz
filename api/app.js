@@ -6,22 +6,21 @@ module.exports = function(app) {
     var connectionString = 'mongodb://127.0.0.1:27017/dyl-quiz';
 
     if(process.env.MLAB_USERNAME) {
-        var username = process.env.MLAB_USERNAME_WEBDEV; // get from environment
-        var password = process.env.MLAB_PASSWORD_WEBDEV;
-        connectionString = 'mongodb://' + username + ':' + password;
-        connectionString += '@ds137101.mlab.com:37101/heroku_dzpfc8qg'; //TODO: Fix this
+        connectionString = 'mongodb://' + process.env.MLAB_USERNAME + ':' + process.env.MLAB_PASSWORD
+            + "@ds149481.mlab.com:49481/heroku_spm670rv";
     }
 
-    var mongoose = require("mongoose");
+    const mongoose = require("mongoose");
     mongoose.Promise = require('bluebird');
     mongoose.connect(connectionString, function (err, res) {
         if (err) {
             console.log ('ERROR connecting to: ' + connectionString + '. ' + err);
         } else {
             console.log ('Succeeded connected to: ' + connectionString);
+
+            // Do I need to wait for connection to make routes?
+            const QuizService = require("./services/quiz.service.server")();
+            require("./router/quiz.router.server.js")(app, QuizService);
         }
     });
-
-    var quizModel = require("./models/quiz.model.server");
-    require("./services/quiz.service.server.js")(app, quizModel);
 };
