@@ -7,7 +7,7 @@
         .factory("QuizService", function ($http, CommonService) {
 
             var api = Object.create(CommonService);
-            api.setObjectName("quiz");
+            api.setObjectName("createQuiz");
 
             return api;
         });

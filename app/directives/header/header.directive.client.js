@@ -8,7 +8,7 @@
             return {
                 restrict: 'A',
                 replace: true,
-                templateUrl: "views/common/header.view.client.html",
+                templateUrl: "controllers/common/header.view.client.html",
                 controller: function(algolia, $scope) {
 
                     const client = algolia.Client('V5A9XWTQ4C', '2deca3f7fbaccbd2657a2d06c6252c1b');

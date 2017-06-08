@@ -49,17 +49,17 @@
 
         function createYouAre(youAre) {
             YouAreService.createYouAre(vm.qid, youAre);
-            $location.url("/user/" + vm.uid + "/quiz/" + vm.qid + "/youares/");
+            $location.url("/register/" + vm.uid + "/createQuiz/" + vm.qid + "/youares/");
         }
 
         function updateYouAre(youAre) {
             YouAreService.update(vm.yid, youAre);
-            $location.url("/user/" + vm.uid + "/quiz/" + vm.qid + "/youares/");
+            $location.url("/register/" + vm.uid + "/createQuiz/" + vm.qid + "/youares/");
         }
 
         function deleteYouAre(youAre) {
             YouAreService.remove(youAre._id);
-            $location.url("/user/" + vm.uid + "/quiz/" + vm.qid + "/youares/");
+            $location.url("/register/" + vm.uid + "/createQuiz/" + vm.qid + "/youares/");
         }
     }
 

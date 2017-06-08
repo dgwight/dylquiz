@@ -4,7 +4,7 @@
 var CommonRouter = require('./common.router.server');
 
 function QuizRouter (app, Service) {
-    this.prototype = new CommonRouter(app, Service, "quiz");
+    this.prototype = new CommonRouter(app, Service, "createQuiz");
 }
 
 module.exports = QuizRouter;

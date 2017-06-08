@@ -8,57 +8,57 @@
     function Config($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "views/quiz/templates/home-page.view.client.html",
+                templateUrl: "controllers/createQuiz/templates/home.html",
                 controller: "HomePageController",
                 controllerAs: "model"
             })
             .when("/home", {
-                templateUrl: "views/quiz/templates/home-page.view.client.html",
+                templateUrl: "controllers/createQuiz/templates/home.html",
                 controller: "HomePageController",
                 controllerAs: "model"
             })
             .when("/login", {
-                templateUrl: "views/user/templates/login.view.client.html",
+                templateUrl: "controllers/register/templates/login.html",
                 controller: "LoginController",
                 controllerAs: "model"
             })
             .when("/register", {
-                templateUrl: "views/user/templates/register.view.client.html",
+                templateUrl: "controllers/register/templates/register.html",
                 controller: "RegisterController",
                 controllerAs: "model"
             })
-            .when("/user/:uid", {
-                templateUrl: "views/user/templates/profile.view.client.html",
+            .when("/register/:uid", {
+                templateUrl: "controllers/register/templates/profile.html",
                 controller: "ProfileController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/quiz", {
-                templateUrl: "views/quiz/templates/quiz-new.view.client.html",
+            .when("/register/:uid/createQuiz", {
+                templateUrl: "controllers/createQuiz/templates/createQuiz-new.view.client.html",
                 controller: "NewQuizController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/quiz/new", {
-                templateUrl: "views/quiz/templates/quiz-new.view.client.html",
+            .when("/register/:uid/createQuiz/new", {
+                templateUrl: "controllers/createQuiz/templates/createQuiz-new.view.client.html",
                 controller: "NewQuizController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/quiz/:qid/question", {
-                templateUrl: "views/quiz/templates/nq-youares.view.client.html",
+            .when("/register/:uid/createQuiz/:qid/question", {
+                templateUrl: "controllers/createQuiz/templates/createQuizResultsList.html",
                 controller: "NewQuizController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/quiz/:qid/question/new", {
-                templateUrl: "views/quiz/templates/nq-youares-new.view.client.html",
+            .when("/register/:uid/createQuiz/:qid/question/new", {
+                templateUrl: "controllers/createQuiz/templates/createQuizResultsNew.html",
                 controller: "NewQuizController",
                 controllerAs: "model"
             })
-            .when("/user/:uid/quiz/:qid/question/:yid", {
-                templateUrl: "views/quiz/templates/nq-youares-edit.view.client.html",
+            .when("/register/:uid/createQuiz/:qid/question/:yid", {
+                templateUrl: "controllers/createQuiz/templates/createQuizResultsEdit.html",
                 controller: "NewQuizController",
                 controllerAs: "model"
             })
             .otherwise({
-                templateUrl: "views/quiz/templates/home-page.view.client.html",
+                templateUrl: "controllers/createQuiz/templates/home.html",
                 controller: "LoginController",
                 controllerAs: "model"
             })
