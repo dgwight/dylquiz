@@ -7,7 +7,7 @@
         .controller("HomePageController", HomePageController)
         .controller("NewQuizController", NewQuizController);
 
-    function HomePageController(QuizService) {
+    function HomePageController(QuizService, algolia, $scope) {
         var vm = this;
 
         function init() {
@@ -19,6 +19,26 @@
                 });
         }
         init();
+
+
+        var client = algolia.Client('V5A9XWTQ4C', '2deca3f7fbaccbd2657a2d06c6252c1b');
+        var index = client.initIndex('getstarted_actors');
+
+        $scope.getDatasets = function () {
+            return {
+                source: algolia.sources.hits(index, {hitsPerPage: 5}),
+                displayKey: 'my_attribute',
+                templates: {
+                    suggestion: function (suggestion) {
+                        return suggestion._highlightResult.name.value;
+                    }
+                }
+            };
+        };
+
+        $scope.$on('autocomplete:selected', function (event, suggestion, dataset) {
+            console.log(suggestion, dataset);
+        });
     }
 
     function NewQuizController($routeParams, $location, QuizService, YouAreService) {

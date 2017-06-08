@@ -3,5 +3,5 @@
  */
 (function(){
     angular
-        .module("DylQuiz", ["ngRoute"]);
+        .module("DylQuiz", ["ngRoute", "algoliasearch", "algolia.autocomplete"]);
 })();
