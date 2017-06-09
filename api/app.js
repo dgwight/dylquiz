@@ -13,8 +13,11 @@ module.exports = function(app) {
             console.log ('Succeeded connected to: ' + connectionString);
 
             // Do I need to wait for connection to make routes?
-            const QuizService = require("./services/quiz.service.server")();
-            require("./router/quiz.router.server.js")(app, QuizService);
+            const QuizService = require("./services/QuizService")();
+            const ResultService = require("./services/ResultService")();
+
+            require("./router/quizRouter.js")(app, QuizService);
+            require("./router/resultRouter.js")(app, ResultService);
         }
     });
 };
