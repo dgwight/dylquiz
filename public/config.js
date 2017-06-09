@@ -47,7 +47,7 @@
                 controller: "CreateQuizResultNewCtrl",
                 controllerAs: "model"
             })
-            .when("createQuiz/:qid/result/:rid", {
+            .when("/createQuiz/:qid/result/:rid", {
                 templateUrl: "views/createQuiz/createQuizResults/createQuizResultsEdit.html",
                 controller: "CreateQuizResultEditCtrl",
                 controllerAs: "model"
@@ -65,7 +65,7 @@
                 controller: "NewQuestionCtrl",
                 controllerAs: "model"
             })
-            .when("createQuiz/:qid/question/:qid", {
+            .when("/createQuiz/:qid/question/:qid", {
                 templateUrl: "views/createQuiz/createQuizQuestions/createQuizQuestionsEdit.html",
                 controller: "EditQuestionCtrl",
                 controllerAs: "model"

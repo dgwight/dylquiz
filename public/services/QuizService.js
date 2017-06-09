@@ -4,12 +4,10 @@
 (function () {
     angular
         .module("dylQuizApp")
-        .factory("QuizService", function ($http, CommonService) {
+        .factory("QuizService", function (CommonService) {
 
-            const api = Object.create(CommonService);
-            api.setObjectName("quiz");
-
-            return api;
+            const QuizService = CommonService("quiz");
+            return QuizService;
         });
 })();
 

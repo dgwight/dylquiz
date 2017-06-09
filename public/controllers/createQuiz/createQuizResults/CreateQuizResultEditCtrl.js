@@ -4,17 +4,18 @@
 (function () {
     angular
         .module("dylQuizApp")
-        .controller("CreateQuizResultsEditCtrl", function ($routeParams, $location, QuizService, ResultService) {
+        .controller("CreateQuizResultEditCtrl", function ($routeParams, $location, ResultService) {
             const vm = this;
 
             vm.qid = $routeParams["qid"];
             vm.rid = $routeParams["rid"];
-            vm.editResult = editResult;
+            vm.updateResult = updateResult;
+            vm.removeResult = removeResult;
 
             function init() {
-                QuizService.findbyId(vm.qid)
-                    .then(function (quiz) {
-                        vm.quiz = quiz;
+                ResultService.findById(vm.rid)
+                    .then(function (result) {
+                        vm.result = result;
                     }).catch(function (error) {
                         console.log(error);
                     });
@@ -22,11 +23,21 @@
 
             init();
 
-            function editResult(result) {
+            function updateResult(result) {
                 ResultService
-                    .editResult(vm.rid, result)
-                    .then(function (quiz) {
-                        $location.url("/createQuiz/" + quiz._id + "/result");
+                    .update(result._id, result)
+                    .then(function (result) {
+                        $location.url("/createQuiz/" + vm.qid + "/result");
+                    }).catch(function (error) {
+                        console.log(error);
+                    })
+            }
+
+            function removeResult(result) {
+                ResultService
+                    .remove(result._id)
+                    .then(function (result) {
+                        $location.url("/createQuiz/" + vm.qid + "/result");
                     }).catch(function (error) {
                         console.log(error);
                     })

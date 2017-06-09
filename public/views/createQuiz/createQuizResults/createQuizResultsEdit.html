@@ -1,21 +1,21 @@
-<ng-include src="'views/common/header.view.client.html'"></ng-include>
+<div dq-header></div>
 
 <div class="container">
     <div class="form-group">
         <label for="name">Name</label>
-        <input ng-model="model.youAre.name"
+        <input ng-model="model.result.name"
                type="text" class="form-control" id="name"
                placeholder="Name">
     </div>
     <div class="form-group">
         <label for="url">Image</label>
-        <input ng-model="model.youAre.url"
+        <input ng-model="model.result.imageUrl"
                type="url" class="form-control" id="url"
                placeholder="Image Url">
     </div>
     <div class="form-group">
         <label for="description">Description</label>
-        <textarea ng-model="model.youAre.description"
+        <textarea ng-model="model.result.description"
                   class="form-control" rows="8"
                   id="description"
                   placeholder="Description"></textarea>
@@ -26,8 +26,8 @@
     <div class="container-fluid">
         <nav aria-label="...">
             <ul class="pager">
-                <li class="previous"><a ng-click="model.deleteYouAre(model.youAre)">Delete</a></li>
-                <li class="next"><a ng-click="model.updateYouAre(model.youAre)">Update</span></a></li>
+                <li class="previous"><a ng-click="model.removeResult(model.result)">Delete</a></li>
+                <li class="next"><a ng-click="model.updateResult(model.result)">Update</span></a></li>
             </ul>
         </nav>
     </div>

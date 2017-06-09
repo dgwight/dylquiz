@@ -6,19 +6,19 @@
         .module("dylQuizApp")
         .factory("ResultService", function (CommonService) {
 
-            const api = Object.create(CommonService);
-            api.createResult = createResult;
-            api.filterByQuizId = filterByQuizId;
+            const ResultService = CommonService("result");
+            ResultService.createResult = createResult;
+            ResultService.findByQuizId = findByQuizId;
 
-            return api;
+            return ResultService;
 
             function createResult(result, quizId) {
                 result.quizId = quizId;
-                return api.create(result);
+                return ResultService.create(result);
             }
 
-            function filterByQuizId(quizId) {
-                return api.find({"quizId": quizId});
+            function findByQuizId(quizId) {
+                return ResultService.find({"quizId": quizId});
             }
         });
 })();

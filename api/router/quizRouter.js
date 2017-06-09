@@ -3,7 +3,7 @@
  */
 const CommonRouter = require('./commonRouter');
 
-function QuizRouter (app, Service) {
+function QuizRouter(app, Service) {
     this.prototype = new CommonRouter(app, Service, "quiz");
 }
 
