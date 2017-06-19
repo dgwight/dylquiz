@@ -3,13 +3,12 @@
  */
 const mongoose = require("mongoose");
 
-const QuizSchema = mongoose.Schema({
+const ResultSchema = mongoose.Schema({
     name: String,
     imageUrl: String,
     description: String,
+    quizId: String,
     dateCreated: {type: Date, default: Date.now}
 });
 
-const QuizModel = mongoose.model("Quiz", QuizSchema);
-
-module.exports = QuizModel;
+module.exports = ResultSchema;

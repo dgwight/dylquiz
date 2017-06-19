@@ -7,12 +7,6 @@
         .module("dylQuizApp")
         .factory("CommonService", function ($http) {
 
-            // return {
-            //     createFor: function (objectName) {
-            //         return new CommonService(objectName);
-            //     }
-            // };
-
             return CommonService;
 
             function CommonService(objectName) {
