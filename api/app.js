@@ -6,7 +6,7 @@ module.exports = function(app) {
     const connectionString = process.env.MONGODB_URI ? process.env.MONGODB_URI : 'mongodb://127.0.0.1:27017/dyl-quiz';
     const mongoose = require("mongoose");
     mongoose.Promise = require('bluebird');
-    mongoose.createConnection(connectionString, function (err, res) {
+    mongoose.connect(connectionString, function (err, res) {
         if (err) {
             console.log ('ERROR connecting to: ' + connectionString + '. ' + err);
         } else {
