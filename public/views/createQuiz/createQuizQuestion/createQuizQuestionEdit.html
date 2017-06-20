@@ -1,0 +1,29 @@
+<div dq-header></div>
+
+<div class="container">
+    <div class="form-group">
+        <label for="text">Question</label>
+        <textarea ng-model="model.question.text"
+                  class="form-control" rows="8"
+                  id="text"
+                  placeholder="Add a question"></textarea>
+        <hr>
+        <label for="answers">Answers</label>
+        <a class="btn btn-primary btn-block"
+           ng-click="model.addAnswer(model.question)">Add Answer</a>
+        <div id="answers" ng-repeat="answer in model.answers">
+            <a href="#/createQuiz/{{quiz._id}}"><h4 class="media-heading">{{answer.text}}</h4></a>
+        </div>
+    </div>
+</div>
+
+<nav id="footer" class="navbar navbar-fixed-bottom">
+    <div class="container-fluid">
+        <nav aria-label="...">
+            <ul class="pager">
+                <li class="previous"><a ng-click="model.removeQuestion(model.question)">Delete</a></li>
+                <li class="next"><a ng-click="model.updateQuestion(model.question)">Update</span></a></li>
+            </ul>
+        </nav>
+    </div>
+</nav>

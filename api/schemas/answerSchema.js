@@ -8,7 +8,7 @@ const AnswerSchema = mongoose.Schema({
     weight: {type: Number, default: 1},
     _question: String,
     _quiz: String,
-    _result: String,
+    results: [String],
     dateCreated: {type: Date, default: Date.now}
 });
 

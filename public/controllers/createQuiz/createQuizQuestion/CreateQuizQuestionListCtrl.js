@@ -4,11 +4,9 @@
 (function () {
     angular
         .module("dylQuizApp")
-        .controller("CreateQuizResultNewCtrl", function ($routeParams, $location, QuizService, ResultService) {
+        .controller("CreateQuizQuestionListCtrl", function ($routeParams, $location, QuizService, QuestionService) {
             const vm = this;
-
             vm.qid = $routeParams["qid"];
-            vm.createResult = createResult;
 
             function init() {
                 QuizService.findById(vm.qid)
@@ -17,18 +15,15 @@
                     }).catch(function (error) {
                         console.log(error);
                     });
+
+                QuestionService.findByQuizId(vm.qid)
+                    .then(function (results) {
+                        vm.questions = results;
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
             }
 
             init();
-
-            function createResult(result) {
-                ResultService
-                    .createResult(result, vm.qid)
-                    .then(function (result) {
-                        $location.url("/createQuiz/" + vm.qid + "/result");
-                    }).catch(function (error) {
-                        console.log(error);
-                    })
-            }
         });
 })();

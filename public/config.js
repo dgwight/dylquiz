@@ -43,35 +43,43 @@
                 controllerAs: "model"
             })
             .when("/createQuiz/:qid/result", {
-                templateUrl: "views/createQuiz/createQuizResults/createQuizResultsList.html",
+                templateUrl: "views/createQuiz/createQuizResult/createQuizResultList.html",
                 controller: "CreateQuizResultListCtrl",
                 controllerAs: "model"
             })
             .when("/createQuiz/:qid/result/new", {
-                templateUrl: "views/createQuiz/createQuizResults/createQuizResultsNew.html",
+                templateUrl: "views/createQuiz/createQuizResult/createQuizResultNew.html",
                 controller: "CreateQuizResultNewCtrl",
                 controllerAs: "model"
             })
             .when("/createQuiz/:qid/result/:rid", {
-                templateUrl: "views/createQuiz/createQuizResults/createQuizResultsEdit.html",
+                templateUrl: "views/createQuiz/createQuizResult/createQuizResultEdit.html",
                 controller: "CreateQuizResultEditCtrl",
                 controllerAs: "model"
             })
             .when("/createQuiz/:qid/question", {
-                templateUrl: "views/createQuiz/createQuizResults/createQuizResultsList.html",
+                templateUrl: "views/createQuiz/createQuizQuestion/createQuizQuestionList.html",
                 controller: "CreateQuizQuestionListCtrl",
                 controllerAs: "model"
             })
-
-
             .when("/createQuiz/:qid/question/new", {
-                templateUrl: "views/createQuiz/createQuizQuestions/createQuizQuestionsNew.html",
-                controller: "NewQuestionCtrl",
+                templateUrl: "views/createQuiz/createQuizQuestion/createQuizQuestionNew.html",
+                controller: "CreateQuizQuestionNewCtrl",
                 controllerAs: "model"
             })
-            .when("/createQuiz/:qid/question/:qid", {
-                templateUrl: "views/createQuiz/createQuizQuestions/createQuizQuestionsEdit.html",
-                controller: "EditQuestionCtrl",
+            .when("/createQuiz/:qid/question/:qnid", {
+                templateUrl: "views/createQuiz/createQuizQuestion/createQuizQuestionEdit.html",
+                controller: "CreateQuizQuestionEditCtrl",
+                controllerAs: "model"
+            })
+            .when("/createQuiz/:qid/question/:qnid/answer/new", {
+                templateUrl: "views/createQuiz/createQuizAnswer/createQuizAnswerNew.html",
+                controller: "CreateQuizAnswerNewCtrl",
+                controllerAs: "model"
+            })
+            .when("/createQuiz/:qid/question/:qnid/answer/:aid", {
+                templateUrl: "views/createQuiz/createQuizAnswer/createQuizAnswerEdit.html",
+                controller: "CreateQuizAnswerEditCtrl",
                 controllerAs: "model"
             })
             .otherwise({

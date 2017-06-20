@@ -1,4 +1,4 @@
-<ng-include src="'views/common/header.view.client.html'"></ng-include>
+<div dq-header></div>
 
 <div class="container">
     <ul class="media-list" ng-repeat="question in model.questions">
@@ -10,7 +10,7 @@
                 </a>
             </div>
             <div class="media-body">
-                <a href="#/createQuiz/{{model.qid}}/questions/{{question._id}}"><h4 class="media-heading">{{question.text}}</h4></a>
+                <a href="#/createQuiz/{{model.qid}}/question/{{question._id}}"><h4 class="media-heading">{{question.text}}</h4></a>
             </div>
         </li>
     </ul>

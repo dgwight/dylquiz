@@ -13,7 +13,7 @@
             return QuestionService;
 
             function createQuestion(question, quizId) {
-                question.quizId = quizId;
+                question._quiz = quizId;
                 return QuestionService.create(question);
             }
 
