@@ -35,7 +35,6 @@ function CommonRouter(app, Service, routeName) {
     }
 
     function respond(err, doc, res) {
-        console.log("respond");
         if (err)
             res.send(err);
         else if (doc)

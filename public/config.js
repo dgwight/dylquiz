@@ -33,6 +33,11 @@
                 controllerAs: "model"
             })
             .when("/createQuiz", {
+                templateUrl: "views/createQuiz/createQuizStart.html",
+                controller: "CreateQuizStartCtrl",
+                controllerAs: "model"
+            })
+            .when("/createQuiz/:qid", {
                 templateUrl: "views/createQuiz/createQuizInfo/createQuizInfo.html",
                 controller: "CreateQuizInfoCtrl",
                 controllerAs: "model"
@@ -52,14 +57,13 @@
                 controller: "CreateQuizResultEditCtrl",
                 controllerAs: "model"
             })
-
-
-
             .when("/createQuiz/:qid/question", {
-                templateUrl: "views/createQuiz/createQuizQuestions/createQuizQuestionsList.html",
-                controller: "QuestionListCtrl",
+                templateUrl: "views/createQuiz/createQuizResults/createQuizResultsList.html",
+                controller: "CreateQuizQuestionListCtrl",
                 controllerAs: "model"
             })
+
+
             .when("/createQuiz/:qid/question/new", {
                 templateUrl: "views/createQuiz/createQuizQuestions/createQuizQuestionsNew.html",
                 controller: "NewQuestionCtrl",

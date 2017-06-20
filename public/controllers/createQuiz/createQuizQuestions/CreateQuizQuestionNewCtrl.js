@@ -1,29 +1,31 @@
 /**
- * Created by DylanWight on 5/23/17.
+ * Created by DylanWight on 6/8/17.
  */
 (function () {
     angular
         .module("dylQuizApp")
-        .controller("CreateQuizInfoCtrl", function ($routeParams, $location, QuizService) {
+        .controller("CreateQuizResultNewCtrl", function ($routeParams, $location, QuizService, ResultService) {
             const vm = this;
+
             vm.qid = $routeParams["qid"];
-            vm.updateQuiz = updateQuiz;
+            vm.createResult = createResult;
 
             function init() {
                 QuizService.findById(vm.qid)
                     .then(function (quiz) {
                         vm.quiz = quiz;
                     }).catch(function (error) {
-                    console.log(error);
-                });
+                        console.log(error);
+                    });
             }
+
             init();
 
-            function updateQuiz(quiz) {
-                QuizService
-                    .update(vm.qid, quiz)
-                    .then(function (quiz) {
-                        $location.url("/createQuiz/" + quiz._id + "/result");
+            function createResult(result) {
+                ResultService
+                    .createResult(result, vm.qid)
+                    .then(function (result) {
+                        $location.url("/createQuiz/" + vm.qid + "/result");
                     }).catch(function (error) {
                         console.log(error);
                     })

@@ -2,7 +2,7 @@
 <div class="container">
     <ul class="list-group">
         <div ng-repeat="quiz in model.quizzes">
-            {{quiz.name}}
+            <a href="#/createQuiz/{{quiz._id}}"><h4 class="media-heading">{{quiz.name}}</h4></a>
         </div>
     </ul>
 </div>

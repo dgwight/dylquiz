@@ -13,12 +13,12 @@
             return ResultService;
 
             function createResult(result, quizId) {
-                result.quizId = quizId;
+                result._quiz = quizId;
                 return ResultService.create(result);
             }
 
             function findByQuizId(quizId) {
-                return ResultService.find({"quizId": quizId});
+                return ResultService.find({"_quiz": quizId});
             }
         });
 })();

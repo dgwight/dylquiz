@@ -1,17 +1,16 @@
 <ng-include src="'views/common/header.view.client.html'"></ng-include>
 
 <div class="container">
-    <ul class="media-list" ng-repeat="youare in model.youares">
+    <ul class="media-list" ng-repeat="question in model.questions">
         <li class="media" href="#/user/123/quiz/new">
             <div class="media-left media-top">
                 <a href="#">
-                    <img class="media-object img-rounded" ng-src="{{youare.url}}" width="140" height="140"
-                         alt="{{youare.name}}">
+                    <img class="media-object img-rounded" ng-src="{{question.url}}" width="140" height="140"
+                         alt="{{question.name}}">
                 </a>
             </div>
             <div class="media-body">
-                <a href="#/user/{{model.uid}}/quiz/{{model.qid}}/youares/{{youare._id}}"><h4 class="media-heading">{{youare.name}}</h4></a>
-                {{youare.description}}
+                <a href="#/createQuiz/{{model.qid}}/questions/{{question._id}}"><h4 class="media-heading">{{question.text}}</h4></a>
             </div>
         </li>
     </ul>
@@ -21,9 +20,9 @@
     <div class="container-fluid">
         <nav aria-label="...">
             <ul class="pager">
-                <li class="previous"><a href="#/user/{{model.uid}}/quiz/new">Previous</a></li>
-                <li><a href="#/user/{{model.uid}}/quiz/{{model.qid}}/youares/new">Create</span></a></li>
-                <li class="next"><a href="#/user/{{model.uid}}/quiz/{{model.qid}}/youares">Next</a></li>
+                <li class="previous"><a href="#/createQuiz/{{model.qid}}/result">Previous</a></li>
+                <li><a href="#/createQuiz/{{model.qid}}/question/new">Create</span></a></li>
+                <li class="next"><a href="#/createQuiz/{{model.qid}}/complete">Next</a></li>
             </ul>
         </nav>
     </div>

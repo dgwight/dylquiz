@@ -7,7 +7,7 @@ const ResultSchema = mongoose.Schema({
     name: String,
     imageUrl: String,
     description: String,
-    quizId: String,
+    _quiz: String,
     dateCreated: {type: Date, default: Date.now}
 });
 
