@@ -14,9 +14,13 @@ module.exports = function(app) {
 
             const QuizService = require("./services/QuizService")();
             const ResultService = require("./services/ResultService")();
+            const QuestionService = require("./services/QuestionService")();
+            const AnswerService = require("./services/AnswerService")();
 
-            require("./router/quizRouter.js")(app, QuizService);
-            require("./router/resultRouter.js")(app, ResultService);
+            require("./router/quizRouter")(app, QuizService);
+            require("./router/resultRouter")(app, ResultService);
+            require("./router/questionRouter")(app, QuestionService);
+            require("./router/answerRouter")(app, AnswerService);
         }
     });
 };
