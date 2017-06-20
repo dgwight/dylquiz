@@ -8,6 +8,7 @@
             const vm = this;
             vm.qid = $routeParams["qid"];
             vm.updateQuiz = updateQuiz;
+            vm.deleteQuiz = deleteQuiz;
 
             function init() {
                 QuizService.findById(vm.qid)
@@ -24,6 +25,16 @@
                     .update(vm.qid, quiz)
                     .then(function (quiz) {
                         $location.url("/createQuiz/" + quiz._id + "/result");
+                    }).catch(function (error) {
+                        console.log(error);
+                    })
+            }
+
+            function deleteQuiz(quiz) {
+                QuizService
+                    .remove(vm.qid)
+                    .then(function (quiz) {
+                        $location.url("/home");
                     }).catch(function (error) {
                         console.log(error);
                     })

@@ -1,8 +1,34 @@
 <div dq-header></div>
 <div class="container">
-    <ul class="list-group">
-        <div ng-repeat="quiz in model.quizzes">
-            <a href="#/createQuiz/{{quiz._id}}"><h4 class="media-heading">{{quiz.name}}</h4></a>
-        </div>
+    <label for="in-progress-quizzes">In progress</label>
+    <ul id="in-progress-quizzes" class="media-list" ng-repeat="quiz in model.inprogressQuizzes">
+        <li class="media">
+            <div class="media-left media-top">
+                <a href="#">
+                    <img class="media-object img-rounded" ng-src="{{quiz.imageUrl}}" width="140" height="140"
+                         alt="{{quiz.name}}">
+                </a>
+            </div>
+            <div class="media-body">
+                <a href="#/createQuiz/{{quiz._id}}"><h4 class="media-heading">{{quiz.name}}</h4></a>
+                {{quiz.description}}
+            </div>
+        </li>
+    </ul>
+
+    <label for="published-quizzes">Published</label>
+    <ul id="published-quizzes" class="media-list" ng-repeat="quiz in model.publishedQuizzes">
+        <li class="media">
+            <div class="media-left media-top">
+                <a href="#">
+                    <img class="media-object img-rounded" ng-src="{{quiz.imageUrl}}" width="140" height="140"
+                         alt="{{quiz.name}}">
+                </a>
+            </div>
+            <div class="media-body">
+                <a href="#/takeQuiz/{{quiz._id}}"><h4 class="media-heading">{{quiz.name}}</h4></a>
+                {{quiz.description}}
+            </div>
+        </li>
     </ul>
 </div>

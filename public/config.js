@@ -82,6 +82,26 @@
                 controller: "CreateQuizAnswerEditCtrl",
                 controllerAs: "model"
             })
+            .when("/createQuiz/:qid/complete", {
+                templateUrl: "views/createQuiz/createQuizComplete.html",
+                controller: "CreateQuizCompleteCtrl",
+                controllerAs: "model"
+            })
+            .when("/takeQuiz/:qid", {
+                templateUrl: "views/takeQuiz/takeQuizStart.html",
+                controller: "TakeQuizStartCtrl",
+                controllerAs: "model"
+            })
+            // .when("/takeQuiz/:qid/question/:qnid", {
+            //     templateUrl: "views/createQuiz/createQuizComplete.html",
+            //     controller: "CreateQuizCompleteCtrl",
+            //     controllerAs: "model"
+            // })
+            // .when("/takeQuiz/:qid/complete", {
+            //     templateUrl: "views/createQuiz/createQuizComplete.html",
+            //     controller: "TakeQuizCompleteCtrl",
+            //     controllerAs: "model"
+            // })
             .otherwise({
                 templateUrl: "views/404/404.html",
                 // controller: "LoginCtrl",
