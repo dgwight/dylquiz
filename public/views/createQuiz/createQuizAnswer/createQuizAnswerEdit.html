@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div dq-header></div>
 
-</body>
-</html>
+<div class="container">
+    <div class="form-group">
+        <label for="text">Answer</label>
+        <textarea ng-model="model.answer.text"
+                  class="form-control" rows="8"
+                  id="text"
+                  placeholder="Write an answer"></textarea>
+        <label for="weight">Weight</label>
+        <input ng-model="model.answer.weight" type="number" id="weight" min="1" max="5" class="form-control" value="1">
+        <label for="results">Results</label>
+        <div id="results" class="form-check" ng-repeat="result in model.quizResults">
+            <div class="checkbox">
+                <label><input
+                        type="checkbox"
+                        value="{{result._id}}"
+                        ng-checked="model.answer.results.indexOf(result._id) > -1"
+                        ng-click="model.toggleSelection(result._id)"> {{result.name}}
+                </label>
+            </div>
+        </div>
+        {{model.answer.results}}
+    </div>
+</div>
+
+<nav id="footer" class="navbar navbar-fixed-bottom">
+    <div class="container-fluid">
+        <nav aria-label="...">
+            <ul class="pager">
+                <li class="previous"><a ng-click="model.deleteAnswer(model.answer)">Delete</a></li>
+                <li><a href="#/createQuiz/{{model.qid}}/question/{{model.qnid}}">Cancel</a></li>
+                <li class="next"><a ng-click="model.updateAnswer(model.answer)">Update</a></li>
+            </ul>
+        </nav>
+    </div>
+</nav>

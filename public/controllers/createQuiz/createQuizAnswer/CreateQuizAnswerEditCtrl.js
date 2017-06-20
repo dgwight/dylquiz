@@ -12,6 +12,9 @@
             vm.aid = $routeParams["aid"];
             vm.updateAnswer = updateAnswer;
             vm.removeAnswer = removeAnswer;
+            vm.toggleSelection = toggleSelection;
+            vm.answer = {};
+            vm.answer.results = [];
 
             function init() {
                 AnswerService.findById(vm.aid)
@@ -22,11 +25,11 @@
                     });
 
                 ResultService.findByQuizId(vm.qid)
-                    .then(function (results) {
-                        vm.results = results;
+                    .then(function (quizResults) {
+                        vm.quizResults = quizResults;
                     }).catch(function (error) {
-                    console.log(error);
-                });
+                        console.log(error);
+                    });
             }
 
             init();
@@ -49,6 +52,20 @@
                     }).catch(function (error) {
                         console.log(error);
                     })
+            }
+
+            function toggleSelection(resultId) {
+                const idx = vm.answer.results.indexOf(resultId);
+
+                // Is currently selected
+                if (idx > -1) {
+                    vm.answer.results.splice(idx, 1);
+                }
+
+                // Is newly selected
+                else {
+                    vm.answer.results.push(resultId);
+                }
             }
         });
 })();
