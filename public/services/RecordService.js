@@ -25,7 +25,7 @@
 
             function createForQuiz(quiz) {
                 var record = {};
-                record._quiz = quiz._id
+                record._quiz = quiz._id;
                 return RecordService.create(record);
             }
 

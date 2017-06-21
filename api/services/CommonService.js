@@ -9,7 +9,8 @@ function CommonService(Model) {
         "findById": findById,
         "create": create,
         "update": update,
-        "remove": remove
+        "remove": remove,
+        "add": add
     };
     return api;
 
@@ -36,6 +37,22 @@ function CommonService(Model) {
     function remove(id) {
         console.log("remove", Model.modelName, id);
         return Model.findByIdAndRemove(id);
+    }
+
+    function add(id, object, fieldName) {
+        console.log("add", Model.modelName, id, object, fieldName);
+        return Model.findById(id).then((model) => {
+            console.log(model[fieldName]);
+            if (model[fieldName].indexOf(object) === -1) {
+                console.log("not found");
+                var push = {};
+                push[fieldName] = object;
+                return Model.findByIdAndUpdate(id, {$push: push}, {safe: true, upsert: true}, null);
+            } else {
+                console.log("found");
+                return null;
+            }
+        });
     }
 }
 

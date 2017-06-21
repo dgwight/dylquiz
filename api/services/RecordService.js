@@ -5,12 +5,14 @@ const mongoose = require("mongoose");
 const CommonService = require('./CommonService');
 const QuizService = require('./QuizService')();
 const QuestionService = require('./QuestionService')();
+const AnswerService = require('./AnswerService')();
 
 function RecordService () {
     const RecordSchema = require("../schemas/recordSchema");
     const RecordModel = mongoose.model("Record", RecordSchema);
     const RecordService = new CommonService(RecordModel);
     RecordService.getNextQuestion = getNextQuestion;
+    RecordService.answerQuestion = answerQuestion;
 
     return RecordService;
 
@@ -26,6 +28,16 @@ function RecordService () {
                 return this.record.questions.indexOf(question._id) === -1;
             });
             return unansweredQuestions[0];
+        })
+    }
+
+    function answerQuestion(id, answerId) {
+        console.log("answerQuestion", answerId);
+        return AnswerService.findById(answerId).then((answer) => {
+            this.answer = answer;
+            return RecordService.add(id, answer._question, "questions");
+        }).then((record) => {
+            return RecordService.add(id, this.answer._id, "answers");
         })
     }
 }
