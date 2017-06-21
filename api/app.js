@@ -16,11 +16,13 @@ module.exports = function(app) {
             const ResultService = require("./services/ResultService")();
             const QuestionService = require("./services/QuestionService")();
             const AnswerService = require("./services/AnswerService")();
+            const RecordService = require("./services/RecordService")();
 
             require("./router/quizRouter")(app, QuizService);
             require("./router/resultRouter")(app, ResultService);
             require("./router/questionRouter")(app, QuestionService);
             require("./router/answerRouter")(app, AnswerService);
+            require("./router/recordRouter")(app, RecordService);
         }
     });
 };
