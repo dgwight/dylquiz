@@ -11,6 +11,8 @@
             RecordService.findByQuizId = findByQuizId;
             RecordService.createForQuiz = createForQuiz;
             RecordService.getNextQuestion = getNextQuestion;
+            RecordService.answerQuestion = answerQuestion;
+            RecordService.getResult = getResult;
 
             return RecordService;
 
@@ -29,8 +31,26 @@
                 return RecordService.create(record);
             }
 
-            function getNextQuestion(record) {
-                const url = "/api/record/" + record._id + "/next-question";
+            function getNextQuestion(recordId) {
+                const url = "/api/record/" + recordId + "/next-question";
+                console.log(url);
+                return $http.get(url)
+                    .then(function (response) {
+                        return response.data;
+                    });
+            }
+
+            function answerQuestion(recordId, answerId) {
+                const url = "/api/record/" + recordId + "/answer-question";
+                console.log(url);
+                return $http.post(url, {answerId: answerId})
+                    .then(function (response) {
+                        return response.data;
+                    });
+            }
+
+            function getResult(record) {
+                const url = "/api/record/" + record._id + "/result";
                 console.log(url);
                 return $http.get(url)
                     .then(function (response) {

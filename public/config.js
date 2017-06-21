@@ -92,16 +92,16 @@
                 controller: "TakeQuizStartCtrl",
                 controllerAs: "model"
             })
-            .when("/takeQuiz/:qid/question/:qnid", {
+            .when("/takeQuiz/:qid/question", {
                 templateUrl: "views/takeQuiz/takeQuizQuestion.html",
                 controller: "TakeQuizQuestionCtrl",
                 controllerAs: "model"
             })
-            // .when("/takeQuiz/:qid/complete", {
-            //     templateUrl: "views/createQuiz/createQuizComplete.html",
-            //     controller: "TakeQuizCompleteCtrl",
-            //     controllerAs: "model"
-            // })
+            .when("/takeQuiz/:qid/complete", {
+                templateUrl: "views/takeQuiz/takeQuizComplete.html",
+                controller: "TakeQuizCompleteCtrl",
+                controllerAs: "model"
+            })
             .otherwise({
                 templateUrl: "views/404/404.html",
                 // controller: "LoginCtrl",

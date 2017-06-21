@@ -16,24 +16,32 @@
                     }).catch(function (error) {
                         console.log(error);
                     });
-
-                QuestionService.findByQuizId(vm.qid)
-                    .then(function (results) {
-                        vm.questions = results;
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
             }
 
             init();
 
             function startQuiz(quiz) {
-                RecordService
-                    .createForQuiz(quiz)
-                    .then(function (record) {
-                        $location.url("/takeQuiz/" + vm.qid + "/question/" + vm.questions[0]._id);
+                RecordService.findByQuizId(quiz._id)
+                    .then(function (records) {
+                        if (records) {
+                            console.log("had record", records);
+                            return records[0];
+                        } else {
+                            console.log("create record");
+                            return createRecord;
+                        }
+                    }).then((record) => {
+                        console.log(record);
+                        $location.url("/takeQuiz/" + vm.qid + "/question/");
                     }).catch(function (error) {
                         console.log(error);
+                    })
+            }
+
+            function createRecord(quiz) {
+                return RecordService.createForQuiz(quiz)
+                    .then(function (record) {
+                        return record;
                     })
             }
         });

@@ -14,34 +14,43 @@
                 RecordService.findByQuizId(vm.qid)
                     .then(function (records) {
                         vm.record = records[0];
-                        return RecordService.getNextQuestion(vm.record);
-                    }).then(function (question) {
-                        vm.question = question;
-                        return AnswerService.findByQuestionId(question._id)
-                    }).then(function (answers) {
-                        vm.answers = answers;
-                    }).catch(function (error) {
-                        console.log(error);
-                    });
-
-                QuestionService.findByQuizId(vm.qid)
-                    .then(function (results) {
-                        vm.questions = results;
-                    }).catch(function (error) {
+                        return advance(vm.record);
+                    }).catch((error) => {
                         console.log(error);
                     });
             }
 
             init();
 
-            function answerQuestion(recordId, questionId, answerId) {
+            function answerQuestion(recordId, answerId) {
                 RecordService
-                    .createForQuiz(quiz)
-                    .then(function (record) {
-                        $location.url("/takeQuiz/" + vm.qid + "/question/" + vm.questions[0]._id);
-                    }).catch(function (error) {
+                    .answerQuestion(recordId, answerId)
+                    .then((record) => {
+                        vm.record = record;
+                        return advance(record);
+                    }).catch((error) => {
                         console.log(error);
                     })
+            }
+
+            function advance(record) {
+                vm.record = record;
+                RecordService
+                    .getNextQuestion(record._id)
+                    .then((question) => {
+                        vm.question = question;
+                        return AnswerService
+                            .findByQuestionId(question._id)
+                            .then((answers) => {
+                                vm.answers = answers;
+                            })
+
+                    }).catch((error) => {
+                        if (error.status === 404)
+                            $location.url("/takeQuiz/" + vm.qid + "/complete");
+                        else
+                            console.log(error);
+                });
             }
         });
 })();
