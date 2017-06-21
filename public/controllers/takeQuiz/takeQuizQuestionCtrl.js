@@ -4,7 +4,7 @@
 (function () {
     angular
         .module("dylQuizApp")
-        .controller("TakeQuizStartCtrl", function ($routeParams, $location, QuizService,
+        .controller("TakeQuizQuestionCtrl", function ($routeParams, $location, QuizService,
                                                    QuestionService, RecordService, AnswerService) {
             const vm = this;
             vm.qid = $routeParams["qid"];
@@ -14,7 +14,7 @@
                 RecordService.findByQuizId(vm.qid)
                     .then(function (records) {
                         vm.record = records[0];
-                        return QuestionService.getNextQuestion(quiz, vm.record);
+                        return QuestionService.getNextQuestion(vm.record);
                     }).then(function (question) {
                         vm.question = question;
                         return AnswerService.findByQuestionId(question._id)
@@ -34,7 +34,7 @@
 
             init();
 
-            function startQuiz(quiz) {
+            function answerQuestion(recordId, questionId, answerId) {
                 RecordService
                     .createForQuiz(quiz)
                     .then(function (record) {

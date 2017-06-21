@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div dq-header></div>
 
-</body>
-</html>
+<div class="container">
+    <h5>{{model.question.text}}</h5>
+    <div id="results" class="form-check" ng-repeat="answer in model.answers">
+        <div class="radio">
+            <label><input
+                    name="answers"
+                    type="radio"
+                    value="{{answer._id}}"
+                    ng-model="model.selectedAnswer"> {{answer.text}}
+            </label>
+        </div>
+    </div>
+    {{model.selectedAnswer}}
+</div>
+
+<nav id="footer" class="navbar navbar-fixed-bottom">
+    <div class="container-fluid">
+        <nav aria-label="...">
+            <ul class="pager">
+                <li><a ng-click="model.startQuiz(model.quiz)">Start</a></li>
+            </ul>
+        </nav>
+    </div>
+</nav>

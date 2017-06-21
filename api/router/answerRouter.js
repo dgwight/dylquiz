@@ -5,7 +5,7 @@ const CommonRouter = require('./commonRouter');
 
 function AnswerRouter(app) {
     const AnswerService = require("../services/AnswerService")();
-    this.prototype = new CommonRouter(app, AnswerService, "answer");
+    const AnswerRouter = new CommonRouter(app, AnswerService, "answer");
 }
 
 module.exports = AnswerRouter;
