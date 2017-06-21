@@ -3,8 +3,9 @@
  */
 const CommonRouter = require('./commonRouter');
 
-function ResultRouter(app, Service) {
-    this.prototype = new CommonRouter(app, Service, "result");
+function ResultRouter(app) {
+    const ResultService = require("../services/ResultService")();
+    this.prototype = new CommonRouter(app, ResultService, "result");
 }
 
 module.exports = ResultRouter;

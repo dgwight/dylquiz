@@ -9,6 +9,12 @@ function CommonRouter(app, Service, routeName) {
     app.put('/api/' + routeName + '/:id', update);
     app.delete('/api/' + routeName + '/:id', remove);
 
+    const api = {
+        "respond": respond
+    };
+
+    return api;
+
     function find(req, res) {
         console.log(req.url, req.body);
         Service.find(req.query).then((err, doc) => respond(err, doc, res));

@@ -3,8 +3,9 @@
  */
 const CommonRouter = require('./commonRouter');
 
-function QuizRouter(app, Service) {
-    this.prototype = new CommonRouter(app, Service, "quiz");
+function QuizRouter(app) {
+    const QuizService = require("../services/QuizService")();
+    this.prototype = new CommonRouter(app, QuizService, "quiz");
 }
 
 module.exports = QuizRouter;
