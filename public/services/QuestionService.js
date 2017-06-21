@@ -4,12 +4,11 @@
 (function () {
     angular
         .module("dylQuizApp")
-        .factory("QuestionService", function ($http, CommonService) {
+        .factory("QuestionService", function (CommonService) {
 
             const QuestionService = CommonService("question");
             QuestionService.createQuestion = createQuestion;
             QuestionService.findByQuizId = findByQuizId;
-            QuestionService.getNextQuestion = getNextQuestion;
 
             return QuestionService;
 
@@ -20,15 +19,6 @@
 
             function findByQuizId(quizId) {
                 return QuestionService.find({"_quiz": quizId});
-            }
-
-            function getNextQuestion(record) {
-                const url = "/api/nextQuestion/" + record._id;
-                console.log(url);
-                return $http.get(url)
-                    .then(function (response) {
-                        return response.data;
-                    });
             }
         });
 })();

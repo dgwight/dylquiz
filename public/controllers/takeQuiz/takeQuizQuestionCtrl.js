@@ -8,13 +8,13 @@
                                                    QuestionService, RecordService, AnswerService) {
             const vm = this;
             vm.qid = $routeParams["qid"];
-            vm.startQuiz = startQuiz;
+            vm.answerQuestion = answerQuestion;
 
             function init() {
                 RecordService.findByQuizId(vm.qid)
                     .then(function (records) {
                         vm.record = records[0];
-                        return QuestionService.getNextQuestion(vm.record);
+                        return RecordService.getNextQuestion(vm.record);
                     }).then(function (question) {
                         vm.question = question;
                         return AnswerService.findByQuestionId(question._id)
