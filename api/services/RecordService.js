@@ -13,6 +13,8 @@ function RecordService () {
     const RecordService = new CommonService(RecordModel);
     RecordService.getNextQuestion = getNextQuestion;
     RecordService.answerQuestion = answerQuestion;
+    RecordService.getResult = getResult;
+
 
     return RecordService;
 
@@ -36,8 +38,26 @@ function RecordService () {
         return AnswerService.findById(answerId).then((answer) => {
             this.answer = answer;
             return RecordService.add(id, answer._question, "questions");
+        // }).then((record) => {
+        //     return RecordService.add(id, this.answer._id, "answers");
         }).then((record) => {
-            return RecordService.add(id, this.answer._id, "answers");
+            // if (!record) return;
+            var update = {};
+            update['$inc'] = {};
+            for (var i = 0; i < this.answer.results.length; i++) {
+                update['$inc']["scores." + this.answer.results[i]] = this.answer.weight;
+            }
+            console.log(update);
+            return RecordService.model.findByIdAndUpdate(id, update, {strict: false, upsert: true, new: true});
+        })
+    }
+
+    function getResult(id) {
+        return RecordService.findById(id).then((record) => {
+            this.record = record;
+            return QuizService.findById(record._quiz);
+        }).then((quiz) => {
+            return QuestionService.findByQuizId(quiz._id);
         })
     }
 }

@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const RecordSchema = mongoose.Schema({
     questions: [String],
     answers: [String],
+    scores: {},
     _quiz: String,
     _user: String,
     dateCreated: {type: Date, default: Date.now}
