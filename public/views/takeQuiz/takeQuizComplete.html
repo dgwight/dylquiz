@@ -2,5 +2,24 @@
 
 <div class="container">
     <h3>{{model.quiz.name}}</h3>
-    {{model.result}}
+    <div class="media" >
+        <div class="media-left media-top">
+            <img class="media-object img-rounded" ng-src="{{model.result.imageUrl}}" width="140" height="140"
+                 alt="{{model.result.name}}">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">{{model.result.name}}</h4>
+            {{model.result.description}}
+        </div>
+    </div>
 </div>
+
+<nav id="footer" class="navbar navbar-fixed-bottom">
+    <div class="container-fluid">
+        <nav aria-label="...">
+            <ul class="pager">
+                <li><a href="#/home">Done</a></li>
+            </ul>
+        </nav>
+    </div>
+</nav>

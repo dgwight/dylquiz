@@ -46,7 +46,7 @@ function RecordService () {
             var update = {};
             update['$inc'] = {};
             for (var i = 0; i < this.answer.results.length; i++) {
-                update['$inc']["scores." + this.answer.results[i]] = this.answer.weight;
+                update['$inc']["scores." + this.answer.results[i]._id] = this.answer.weight;
             }
             return RecordService.model.findByIdAndUpdate(id, update, {strict: false, upsert: true, new: true});
         })

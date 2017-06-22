@@ -23,12 +23,12 @@
             function startQuiz(quiz) {
                 RecordService.findByQuizId(quiz._id)
                     .then(function (records) {
-                        if (records) {
+                        if (records.length > 0) {
                             console.log("had record", records);
                             return records[0];
                         } else {
                             console.log("create record");
-                            return createRecord;
+                            return createRecord(quiz);
                         }
                     }).then((record) => {
                         console.log(record);

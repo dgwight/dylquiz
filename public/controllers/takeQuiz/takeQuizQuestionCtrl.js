@@ -12,7 +12,7 @@
 
             function init() {
                 RecordService.findByQuizId(vm.qid)
-                    .then(function (records) {
+                    .then((records) => {
                         vm.record = records[0];
                         return advance(vm.record);
                     }).catch((error) => {
@@ -23,6 +23,7 @@
             init();
 
             function answerQuestion(recordId, answerId) {
+                console.log("answerId", answerId);
                 RecordService
                     .answerQuestion(recordId, answerId)
                     .then((record) => {
