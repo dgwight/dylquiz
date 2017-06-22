@@ -18,7 +18,7 @@
                 <label><input
                         type="checkbox"
                         value="{{result}}"
-                        ng-checked="model.selectedResults.indexOf(result) > -1"
+                        ng-checked = "model.resultIndex(model.answer, result) > -1"
                         ng-click="model.toggleSelection(result)"> {{result.name}}
                 </label>
             </div>

@@ -14,7 +14,7 @@
             vm.updateAnswer = updateAnswer;
             vm.removeAnswer = removeAnswer;
             vm.toggleSelection = toggleSelection;
-            vm.isResultSelected = isResultSelected;
+            vm.resultIndex = resultIndex;
             vm.answer = {};
             vm.answer.results = [];
 
@@ -64,14 +64,15 @@
             }
 
             function toggleSelection(result) {
-                if (isResultSelected(vm.answer, result))
+                const idx = resultIndex(vm.answer, result);
+                if (idx > -1)
                     vm.answer.results.splice(idx, 1);
                 else
                     vm.answer.results.push(result);
             }
 
-            function isResultSelected(answer, result) {
-                return answer.results.map((r) => r._id).indexOf(result._id) > -1;
+            function resultIndex(answer, result) {
+                return answer.results.map((r) => r._id).indexOf(result._id);
             }
         });
 })();
