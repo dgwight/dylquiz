@@ -12,11 +12,11 @@
         <hr>
         <label for="answers">Answers</label>
         <div id="answers" class="list-group">
-            <a ng-click="model.addAnswer(model.question)" class="list-group-item active">Add Answer <span class="glyphicon glyphicon-plus pull-right"></span></a>
             <a ng-repeat="answer in model.answers" href="#/createQuiz/{{model.qid}}/question/{{model.qnid}}/answer/{{answer._id}}"
                class="list-group-item">
                 {{answer.text}} <span class="pull-right">{{model.displayResults(answer)}}</span>
             </a>
+            <a ng-click="model.addAnswer(model.question)" class="list-group-item active">Add Answer <span class="glyphicon glyphicon-plus pull-right"></span></a>
         </div>
     </div>
 </div>

@@ -3,20 +3,20 @@
 <div class="container">
     <h2>Results</h2>
     <h5>Tap create to add a new result</h5>
-    <ul class="media-list" ng-repeat="result in model.results">
-        <li class="media">
-            <div class="media-left media-top">
-                <a href="#">
+    <div class="list-group">
+        <a class="list-group-item" ng-repeat="result in model.results" href="#/createQuiz/{{model.qid}}/result/{{result._id}}">
+            <div class="media" >
+                <div class="media-left media-top">
                     <img class="media-object img-rounded" ng-src="{{result.imageUrl}}" width="140" height="140"
                          alt="{{result.name}}">
-                </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{result.name}}</h4>
+                    {{result.description}}
+                </div>
             </div>
-            <div class="media-body">
-                <a href="#/createQuiz/{{model.qid}}/result/{{result._id}}"><h4 class="media-heading">{{result.name}}</h4></a>
-                {{result.description}}
-            </div>
-        </li>
-    </ul>
+        </a>
+    </div>
 </div>
 
 <nav id="footer" class="navbar navbar-fixed-bottom">

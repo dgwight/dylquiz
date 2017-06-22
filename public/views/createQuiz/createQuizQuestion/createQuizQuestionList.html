@@ -2,20 +2,14 @@
 
 <div class="container">
     <h2>Questions</h2>
-    <h5>Tap create to add a new question</h5>
-    <ul class="media-list" ng-repeat="question in model.questions">
-        <li class="media" href="#/user/123/quiz/new">
-            <div class="media-left media-top">
-                <a href="#">
-                    <img class="media-object img-rounded" ng-src="{{question.url}}" width="140" height="140"
-                         alt="{{question.name}}">
-                </a>
-            </div>
-            <div class="media-body">
-                <a href="#/createQuiz/{{model.qid}}/question/{{question._id}}"><h4 class="media-heading">{{question.text}}</h4></a>
-            </div>
-        </li>
-    </ul>
+    <h5>Tap add question to create a new question</h5>
+    <div class="list-group">
+        <a ng-repeat="question in model.questions track by $index" href="#/createQuiz/{{model.qid}}/question/{{question._id}}"
+           class="list-group-item">
+            Q{{$index + 1}}. {{question.text}}
+        </a>
+        <a href="#/createQuiz/{{model.qid}}/question/new" class="list-group-item active">Add Question <span class="glyphicon glyphicon-plus pull-right"></span></a>
+    </div>
 </div>
 
 <nav id="footer" class="navbar navbar-fixed-bottom">
@@ -23,7 +17,6 @@
         <nav aria-label="...">
             <ul class="pager">
                 <li class="previous"><a href="#/createQuiz/{{model.qid}}/result">Previous</a></li>
-                <li><a href="#/createQuiz/{{model.qid}}/question/new">Create</span></a></li>
                 <li class="next"><a href="#/createQuiz/{{model.qid}}/complete">Next</a></li>
             </ul>
         </nav>
