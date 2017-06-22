@@ -12,11 +12,13 @@ module.exports = function(app) {
         } else {
             console.log ('Succeeded connected to: ' + connectionString);
 
-            require("./router/quizRouter")(app);
-            require("./router/resultRouter")(app);
-            require("./router/questionRouter")(app);
             require("./router/answerRouter")(app);
+            require("./router/authRouter")(app);
+            require("./router/questionRouter")(app);
+            require("./router/quizRouter")(app);
             require("./router/recordRouter")(app);
+            require("./router/resultRouter")(app);
+            require("./router/userRouter")(app);
         }
     });
 };

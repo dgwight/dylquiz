@@ -7,13 +7,19 @@
     "@newrelic/native-metrics": "^2.1.1",
     "algoliasearch": "^3.22.3",
     "autocomplete.js": "^0.28.1",
+    "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.5.0",
     "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.3",
     "express": "^4.13.4",
+    "express-session": "^1.15.3",
     "lodash": "^4.17.4",
     "mongojs": "^2.4.0",
     "mongoose": "^4.4.15",
-    "newrelic": "^1.39.1"
+    "newrelic": "^1.39.1",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {},
   "scripts": {

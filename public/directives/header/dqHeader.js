@@ -9,7 +9,7 @@
                 restrict: 'A',
                 replace: true,
                 templateUrl: "directives/header/dqHeader.html",
-                controller: function(algolia, $scope) {
+                controller: function($location, $scope, algolia, AuthService) {
 
                     const client = algolia.Client('V5A9XWTQ4C', '2deca3f7fbaccbd2657a2d06c6252c1b');
                     const index = client.initIndex('getstarted_actors');
@@ -29,6 +29,13 @@
                     $scope.$on('autocomplete:selected', function (event, suggestion, dataset) {
                         console.log(suggestion, dataset);
                     });
+
+                    $scope.logout = function() {
+                        AuthService.logout().then((auth) => {
+                            console.log(auth);
+                            $location.url("/login");
+                        })
+                    }
                 }
             }
         })

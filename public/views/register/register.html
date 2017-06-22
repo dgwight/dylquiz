@@ -9,12 +9,12 @@
            type="password"
            class="form-control"
            placeholder="password"/>
-    <input ng-model="model.user.passwordConfirm"
+    <input ng-model="model.passwordConfirm"
            type="password"
            class="form-control"
            placeholder="very password"/>
     <a class="btn btn-primary btn-block"
-       ng-click="model.register(model.user)">Register</a>
+       ng-click="model.register(model.user, model.passwordConfirm)">Register</a>
     <a class="btn btn-danger btn-block"
        href="#/login">Cancel</a>
 </div>

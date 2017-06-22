@@ -4,17 +4,27 @@
 (function () {
     angular
         .module("dylQuizApp")
-        .controller("LoginCtrl", function ($location, UserService) {
+        .controller("LoginCtrl", function ($location, $rootScope, AuthService) {
             const vm = this;
             vm.login = login;
 
             function login(user) {
-                user = UserService.findUserByCredentials(user.username, user.password);
-                if (user) {
-                    $location.url("/register/" + user._id);
-                } else {
-                    vm.alert = "Unable to login";
+                console.log(user);
+                if (!user || !user.username) {
+                    vm.alert = "Username is required";
+                    return;
+                } else if (!user.password) {
+                    vm.alert = "Password is required";
+                    return;
                 }
+
+                AuthService
+                    .login(user)
+                    .then(function (response) {
+                        $rootScope.currentAuth = response.data;
+                    }).catch(function (error) {
+                        vm.alert = "Username " + user.username + " not found, please try again";
+                    });
             }
         });
 })();
