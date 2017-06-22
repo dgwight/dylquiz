@@ -11,41 +11,10 @@ body {
     background-color: #5C359B;
     border-color: #444444;
 }
-
-.navbar-dylquiz .navbar-link {
-    color: #444444;
+.navbar-dylquiz .navbar-nav>li>a {
+    color: #dddddd;
 }
 
-.navbar-dylquiz .navbar-brand {
-    color: #888888;
-}
-
-ul {
-    list-style-type: none;
-}
-
-li {
-    /*margin:0 0 20px 0;*/
-}
-
-.float-right {
-    float: right;
-}
-
-.img-fluid {
-    max-width: 100%;
-    height: auto;
-}
-
-.algolia-autocomplete {
-    width: 100%;
-}
-.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
-    width: 100%;
-}
-.algolia-autocomplete .aa-hint {
-    color: #999;
-}
 .algolia-autocomplete .aa-dropdown-menu {
     width: 100%;
     background-color: #fff;
@@ -63,10 +32,3 @@ li {
     font-weight: bold;
     font-style: normal;
 }
-/*.algolia-autocomplete {*/
-    /*display: inline !important;*/
-/*}*/
-
-
-
-
