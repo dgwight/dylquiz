@@ -1,6 +1,8 @@
 <div dq-header></div>
 
 <div class="container">
+    <h2>Question Details</h2>
+    <h5>First write the question, then tap add answer to start making answers</h5>
     <div class="form-group">
         <label for="text">Question</label>
         <textarea ng-model="model.question.text"
@@ -9,10 +11,12 @@
                   placeholder="Add a question"></textarea>
         <hr>
         <label for="answers">Answers</label>
-        <a class="btn btn-primary btn-block"
-           ng-click="model.addAnswer(model.question)">Add Answer</a>
-        <div id="answers" ng-repeat="answer in model.answers">
-            <a href="#/createQuiz/{{model.qid}}/question/{{model.qnid}}/answer/{{answer._id}}"><h4 class="media-heading">{{answer.text}}</h4></a>
+        <div id="answers" class="list-group">
+            <a ng-click="model.addAnswer(model.question)" class="list-group-item active">Add Answer <span class="glyphicon glyphicon-plus pull-right"></span></a>
+            <a ng-repeat="answer in model.answers" href="#/createQuiz/{{model.qid}}/question/{{model.qnid}}/answer/{{answer._id}}"
+               class="list-group-item">
+                {{answer.text}} <span class="pull-right">{{model.displayResults(answer)}}</span>
+            </a>
         </div>
     </div>
 </div>

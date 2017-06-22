@@ -4,7 +4,8 @@
 (function () {
     angular
         .module("dylQuizApp")
-        .controller("CreateQuizAnswerNewCtrl", function ($routeParams, $location, AnswerService, ResultService) {
+        .controller("CreateQuizAnswerNewCtrl", function ($routeParams, $location,
+                                                         AnswerService, ResultService, QuestionService) {
             const vm = this;
 
             vm.qid = $routeParams["qid"];
@@ -18,6 +19,13 @@
                 ResultService.findByQuizId(vm.qid)
                     .then(function (quizResults) {
                         vm.quizResults = quizResults;
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+
+                QuestionService.findById(vm.qnid)
+                    .then(function (question) {
+                        vm.question = question;
                     }).catch(function (error) {
                         console.log(error);
                     });
@@ -37,19 +45,15 @@
                     })
             }
 
-            function toggleSelection(resultId) {
-                console.log("toggleSelection", resultId);
-                const idx = vm.answer.results.indexOf(resultId);
-
-                // Is currently selected
-                if (idx > -1) {
+            function toggleSelection(result) {
+                if (isResultSelected(vm.answer, result))
                     vm.answer.results.splice(idx, 1);
-                }
+                else
+                    vm.answer.results.push(result);
+            }
 
-                // Is newly selected
-                else {
-                    vm.answer.results.push(resultId);
-                }
+            function isResultSelected(answer, result) {
+                return answer.results.map((r) => r._id).indexOf(result._id) > -1;
             }
         });
 })();

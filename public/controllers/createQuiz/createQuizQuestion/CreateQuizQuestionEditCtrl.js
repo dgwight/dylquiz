@@ -12,6 +12,7 @@
             vm.updateQuestion = updateQuestion;
             vm.removeQuestion = removeQuestion;
             vm.addAnswer = addAnswer;
+            vm.displayResults = displayResults;
 
             function init() {
                 QuestionService.findById(vm.qnid)
@@ -59,6 +60,11 @@
                     }).catch(function (error) {
                         console.log(error);
                     })
+            }
+
+            function displayResults(answer) {
+                const names = answer.results.map((result) => result.name);
+                return "+" + answer.weight + " to " + names.join(", ");
             }
         });
 })();

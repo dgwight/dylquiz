@@ -10,6 +10,7 @@
             vm.qid = $routeParams["qid"];
             vm.createQuestion = createQuestion;
             vm.addAnswer = addAnswer;
+            vm.displayResults = displayResults;
 
             function init() {
                 QuizService.findById(vm.qid)
@@ -36,10 +37,15 @@
                 QuestionService
                     .createQuestion(question, vm.qid)
                     .then(function (question) {
-                        $location.url("/createQuiz/" + vm.qid + "/question/" + vm.qnid + "/answer/new");
+                        $location.url("/createQuiz/" + vm.qid + "/question/" + question._id + "/answer/new");
                     }).catch(function (error) {
-                    console.log(error);
-                })
+                        console.log(error);
+                    })
+            }
+
+            function displayResults(answer) {
+                const names = answer.results.map((result) => result.name);
+                return "+" + answer.weight + " to " + names.join(", ");
             }
         });
 })();

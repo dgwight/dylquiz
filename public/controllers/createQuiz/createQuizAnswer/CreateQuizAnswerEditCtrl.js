@@ -4,7 +4,8 @@
 (function () {
     angular
         .module("dylQuizApp")
-        .controller("CreateQuizAnswerEditCtrl", function ($routeParams, $location, AnswerService, ResultService) {
+        .controller("CreateQuizAnswerEditCtrl", function ($routeParams, $location,
+                                                          AnswerService, QuestionService, ResultService) {
             const vm = this;
 
             vm.qid = $routeParams["qid"];
@@ -13,6 +14,7 @@
             vm.updateAnswer = updateAnswer;
             vm.removeAnswer = removeAnswer;
             vm.toggleSelection = toggleSelection;
+            vm.isResultSelected = isResultSelected;
             vm.answer = {};
             vm.answer.results = [];
 
@@ -20,6 +22,13 @@
                 AnswerService.findById(vm.aid)
                     .then(function (answer) {
                         vm.answer = answer;
+                    }).catch(function (error) {
+                        console.log(error);
+                    });
+
+                QuestionService.findById(vm.qnid)
+                    .then(function (question) {
+                        vm.question = question;
                     }).catch(function (error) {
                         console.log(error);
                     });
@@ -54,18 +63,15 @@
                     })
             }
 
-            function toggleSelection(resultId) {
-                const idx = vm.answer.results.indexOf(resultId);
-
-                // Is currently selected
-                if (idx > -1) {
+            function toggleSelection(result) {
+                if (isResultSelected(vm.answer, result))
                     vm.answer.results.splice(idx, 1);
-                }
+                else
+                    vm.answer.results.push(result);
+            }
 
-                // Is newly selected
-                else {
-                    vm.answer.results.push(resultId);
-                }
+            function isResultSelected(answer, result) {
+                return answer.results.map((r) => r._id).indexOf(result._id) > -1;
             }
         });
 })();
