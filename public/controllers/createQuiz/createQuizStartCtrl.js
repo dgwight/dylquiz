@@ -8,6 +8,18 @@
             const vm = this;
             vm.createQuiz = createQuiz;
 
+            function init() {
+                QuizService.find({})
+                    .then(function (quizzes) {
+                        vm.quizzes = quizzes;
+                        vm.inprogressQuizzes = quizzes.filter((quiz) => !quiz.published);
+                    }).catch(function (error) {
+                    vm.alert = "Widget not found, please try again";
+                });
+            }
+
+            init();
+
             function createQuiz(quiz) {
                 QuizService
                     .create(quiz)

@@ -12,7 +12,6 @@
                     .then(function (quizzes) {
                         vm.quizzes = quizzes;
                         vm.publishedQuizzes = quizzes.filter((quiz) => quiz.published);
-                        vm.inprogressQuizzes = quizzes.filter((quiz) => !quiz.published);
                     }).catch(function (error) {
                         vm.alert = "Widget not found, please try again";
                     });

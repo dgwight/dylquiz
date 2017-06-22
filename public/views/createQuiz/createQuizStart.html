@@ -10,6 +10,24 @@
         </li>
         <li>Publish quiz: Once you're done creating a new quiz, publish it so others can take it!</li>
     </ol>
+    <div ng-show="model.inprogressQuizzes.length > 0">
+      <hr>
+        <h4 >In progress</h4>
+    </div>
+    <div class="list-group">
+        <a class="list-group-item" ng-repeat="quiz in model.inprogressQuizzes" href="#/createQuiz/{{quiz._id}}">
+            <div class="media" >
+                <div class="media-left media-top">
+                    <img class="media-object img-rounded" ng-src="{{quiz.imageUrl}}" width="140" height="140"
+                         alt="{{quiz.name}}">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{quiz.name}}</h4>
+                    {{quiz.description}}
+                </div>
+            </div>
+        </a>
+    </div>
 </div>
 
 <nav id="footer" class="navbar navbar-fixed-bottom">
