@@ -3,7 +3,9 @@
 <div class="container">
     <h2>{{model.user.username}}</h2>
     <div class="list-group">
-        <a class="list-group-item" ng-repeat="record in model.records" href="#/record/{{record._id}}">
+        <div ng-repeat="record in model.records">
+            <h3 class="media-heading">{{record._quiz.name}}</h3>
+            <a class="list-group-item"  href="#/record/{{record._id}}">
             <div class="media">
 
                 <div class="media-left media-top">
@@ -11,11 +13,11 @@
                          alt="{{record._result.name}}">
                 </div>
                 <div class="media-body">
-                    <h3 class="media-heading">{{record._quiz.name}}</h3>
                     <h4 class="media-heading">{{record._result.name}}</h4>
                     {{record._result.description}}
                 </div>
             </div>
         </a>
+        </div>
     </div>
 </div>

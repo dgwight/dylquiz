@@ -4,7 +4,7 @@
 (function () {
     angular
         .module("dylQuizApp")
-        .controller("RegisterCtrl", function ($location, $rootScope, UserService) {
+        .controller("RegisterCtrl", function ($location, $rootScope, UserService, RecordService) {
             const vm = this;
             vm.register = register;
 
@@ -28,6 +28,9 @@
                     .then(function(response) {
                         $rootScope.currentUser = response.data;
                         $location.url("/home/");
+                        if ($rootScope.currentRecord) {
+                            RecordService.update($rootScope.currentRecord._id, {_user: $rootScope.currentUser._id});
+                        }
                     });
             }
         });

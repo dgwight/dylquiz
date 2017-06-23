@@ -10,21 +10,15 @@
             vm.qid = $routeParams["qid"];
             vm.user = $rootScope.currentUser;
             vm.answerQuestion = answerQuestion;
+            vm.record = $rootScope.currentRecord;
 
             function init() {
-                RecordService.findByQuiz(vm.qid, $rootScope.currentUser._id)
-                    .then((records) => {
-                        vm.record = records[0];
-                        return advance(vm.record);
-                    }).catch((error) => {
-                        console.log(error);
-                    });
+                advance(vm.record)
             }
 
             init();
 
             function answerQuestion(recordId, answerId) {
-                console.log("answerId", answerId);
                 RecordService
                     .answerQuestion(recordId, answerId)
                     .then((record) => {
@@ -36,7 +30,6 @@
             }
 
             function advance(record) {
-                console.log("advance");
                 vm.record = record;
                 RecordService
                     .getNextQuestion(record._id)
@@ -45,7 +38,6 @@
                         vm.question = question;
                         return AnswerService.findByQuestionId(question._id)
                     }).then((answers) => {
-                        console.log(answers);
                         vm.answers = answers;
                     }).catch((error) => {
                         if (error.status === 404)

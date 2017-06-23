@@ -23,17 +23,7 @@
             init();
 
             function startQuiz(quiz) {
-                console.log(vm.user, $rootScope.currentUser);
-                RecordService.findByQuiz(vm.qid, $rootScope.currentUser._id)
-                    .then((records) => {
-                        if (records.length > 0) {
-                            console.log("had record", records);
-                            return records[0];
-                        } else {
-                            console.log("create record");
-                            return createRecord(quiz);
-                        }
-                    }).then((record) => {
+                getRecord(quiz).then((record) => {
                         console.log(record);
                         $location.url("/takeQuiz/" + vm.qid + "/question/");
                     }).catch(function (error) {
@@ -41,9 +31,26 @@
                     })
             }
 
+            function getRecord(quiz) {
+                if (!vm.user) {
+                    return createRecord(quiz);
+                }
+
+                return RecordService.findByQuiz(vm.qid, vm.user._id)
+                    .then((records) => {
+                        if (records.length > 0) {
+                            $rootScope.currentRecord = records[0];
+                            return records[0];
+                        } else {
+                            return createRecord(quiz);
+                        }
+                    })
+            }
+
             function createRecord(quiz) {
                 return RecordService.createForQuiz(quiz)
                     .then(function (record) {
+                        $rootScope.currentRecord = record;
                         return record;
                     })
             }
