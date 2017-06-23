@@ -16,7 +16,7 @@ function CommonRouter(app, Service, routeName) {
     return api;
 
     function find(req, res) {
-        console.log(req.url, req.body);
+        console.log(req.url, req.query);
         Service.find(req.query).then((err, doc) => respond(err, doc, res));
     }
 

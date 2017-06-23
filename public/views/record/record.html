@@ -1,15 +1,15 @@
 <div dq-header></div>
 
 <div class="container">
-    <h3>{{model.quiz.name}}</h3>
+    <h3>{{model.record._quiz.name}}</h3>
     <div class="media" >
         <div class="media-left media-top">
-            <img class="media-object img-rounded" ng-src="{{model.result.imageUrl}}" width="140" height="140"
-                 alt="{{model.result.name}}">
+            <img class="media-object img-rounded" ng-src="{{model.record._result.imageUrl}}" width="140" height="140"
+                 alt="{{model.record._result.name}}">
         </div>
         <div class="media-body">
-            <h4 class="media-heading">{{model.result.name}}</h4>
-            {{model.result.description}}
+            <h4 class="media-heading">{{model.record._result.name}}</h4>
+            {{model.record._result.description}}
         </div>
     </div>
 </div>

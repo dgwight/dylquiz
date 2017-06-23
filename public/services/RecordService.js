@@ -7,27 +7,16 @@
         .factory("RecordService", function ($http, CommonService) {
 
             const RecordService = CommonService("record");
-            RecordService.createRecord = createRecord;
-            RecordService.findByQuizId = findByQuizId;
             RecordService.createForQuiz = createForQuiz;
             RecordService.getNextQuestion = getNextQuestion;
             RecordService.answerQuestion = answerQuestion;
-            RecordService.getResult = getResult;
+            RecordService.findByQuiz = findByQuiz;
 
             return RecordService;
 
-            function createRecord(result, quizId) {
-                result._quiz = quizId;
-                return RecordService.create(result);
-            }
-
-            function findByQuizId(quizId) {
-                return RecordService.find({"_quiz": quizId});
-            }
-
             function createForQuiz(quiz) {
                 var record = {};
-                record._quiz = quiz._id;
+                record._quiz = quiz;
                 return RecordService.create(record);
             }
 
@@ -49,13 +38,8 @@
                     });
             }
 
-            function getResult(record) {
-                const url = "/api/record/" + record._id + "/result";
-                console.log(url);
-                return $http.get(url)
-                    .then(function (response) {
-                        return response.data;
-                    });
+            function findByQuiz(quizId, userId) {
+                return RecordService.find({"_quiz._id": quizId, "_user": userId});
             }
         });
 })();

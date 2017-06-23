@@ -112,9 +112,9 @@
                 controller: "TakeQuizQuestionCtrl",
                 controllerAs: "model"
             })
-            .when("/takeQuiz/:qid/complete", {
-                templateUrl: "views/takeQuiz/takeQuizComplete.html",
-                controller: "TakeQuizCompleteCtrl",
+            .when("/record/:rid", {
+                templateUrl: "views/record/record.html",
+                controller: "RecordCtrl",
                 controllerAs: "model"
             })
             .otherwise({

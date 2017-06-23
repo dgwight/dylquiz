@@ -15,7 +15,7 @@ function RecordService () {
     const RecordService = new CommonService(RecordModel);
     RecordService.getNextQuestion = getNextQuestion;
     RecordService.answerQuestion = answerQuestion;
-    RecordService.getResult = getResult;
+    RecordService.completeRecord = completeRecord;
 
     return RecordService;
 
@@ -23,14 +23,17 @@ function RecordService () {
         console.log("getNextQuestion", id);
         return RecordService.findById(id).then((record) => {
             this.record = record;
-            return QuizService.findById(record._quiz);
-        }).then((quiz) => {
-            return QuestionService.findByQuizId(quiz._id);
+            return QuestionService.findByQuizId(record._quiz._id);
         }).then((questions) => {
             const unansweredQuestions = questions.filter((question) => {
                 return this.record.questions.indexOf(question._id) === -1;
             });
-            return unansweredQuestions[0];
+            if (unansweredQuestions[0]) {
+                return unansweredQuestions[0];
+            } else {
+                completeRecord(id);
+                return null;
+            }
         })
     }
 
@@ -52,7 +55,8 @@ function RecordService () {
         })
     }
 
-    function getResult(id) {
+    function completeRecord(id) {
+        console.log("completeRecord");
         return RecordService.findById(id).then((record) => {
             var highestScore = 0;
             var highestResult;
@@ -63,6 +67,9 @@ function RecordService () {
                 }
              }
             return ResultService.findById(highestResult);
+        }).then((result) => {
+            console.log("_result", result);
+            return RecordService.update(id, {_result: result, published: true});
         })
     }
 }

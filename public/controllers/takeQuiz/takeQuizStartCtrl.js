@@ -4,8 +4,10 @@
 (function () {
     angular
         .module("dylQuizApp")
-        .controller("TakeQuizStartCtrl", function ($routeParams, $location, QuizService, QuestionService, RecordService) {
+        .controller("TakeQuizStartCtrl", function ($rootScope, $routeParams, $location,
+                                                   QuizService, QuestionService, RecordService) {
             const vm = this;
+            vm.user = $rootScope.currentUser;
             vm.qid = $routeParams["qid"];
             vm.startQuiz = startQuiz;
 
@@ -21,8 +23,9 @@
             init();
 
             function startQuiz(quiz) {
-                RecordService.findByQuizId(quiz._id)
-                    .then(function (records) {
+                console.log(vm.user, $rootScope.currentUser);
+                RecordService.findByQuiz(vm.qid, $rootScope.currentUser._id)
+                    .then((records) => {
                         if (records.length > 0) {
                             console.log("had record", records);
                             return records[0];

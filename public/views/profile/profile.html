@@ -1,4 +1,19 @@
-<ng-include src="'views/common/header.view.client.html'"></ng-include>
+<div dq-header></div>
+
 <div class="container">
-    <h2>Profile</h2>
+    <h2>{{model.user.username}}</h2>
+    <div class="list-group">
+        <a class="list-group-item" ng-repeat="record in model.records" href="#/takeQuiz/{{result._quiz}}">
+            <div class="media">
+                <div class="media-left media-top">
+                    <img class="media-object img-rounded" ng-src="{{result.imageUrl}}" width="140" height="140"
+                         alt="{{result.name}}">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{result.name}}</h4>
+                    {{result.description}}
+                </div>
+            </div>
+        </a>
+    </div>
 </div>

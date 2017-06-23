@@ -4,20 +4,20 @@
 (function () {
     angular
         .module("dylQuizApp")
-        .controller("ProfileCtrl", function ($routeParams, UserService) {
+        .controller("ProfileCtrl", function ($rootScope, RecordService) {
             const vm = this;
-            vm.update = update;
+            vm.user = $rootScope.currentUser;
 
-            vm.uid = $routeParams["uid"];
             function init() {
-                // const user = UserService.findById(vm.uid);
-                // vm.user = JSON.parse(JSON.stringify(user));
+                RecordService.find({_user: vm.user})
+                    .then((records) => {
+                        vm.records = records;
+                    }).catch((error) => {
+                        console.log(error);
+                    });
             }
 
             init();
 
-            function update(user) {
-                // UserService.updateUser(user._id, user);
-            }
         });
 })();
