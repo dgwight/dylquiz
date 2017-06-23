@@ -22,6 +22,7 @@
                     .login(user)
                     .then(function (response) {
                         $rootScope.currentAuth = response.data;
+                        $location.url("/home/");
                     }).catch(function (error) {
                         vm.alert = "Username " + user.username + " not found, please try again";
                     });

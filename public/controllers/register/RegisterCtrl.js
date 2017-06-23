@@ -27,7 +27,7 @@
                     .register(user)
                     .then(function(response) {
                         $rootScope.currentAuth = response.data;
-                        $location.url("/user/" + user._id);
+                        $location.url("/home/");
                     });
             }
         });

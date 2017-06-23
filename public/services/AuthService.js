@@ -12,6 +12,7 @@
             AuthService.login = login;
             AuthService.logout = logout;
             AuthService.register = register;
+            AuthService.isLoggedIn = isLoggedIn;
 
             return AuthService;
 
@@ -33,6 +34,11 @@
 
             function register(user) {
                 return $http.post("/api/register", user);
+            }
+
+            function isLoggedIn() {
+                console.log("isLoggedIn");
+                return $http.get('/api/loggedin')
             }
         });
 })();

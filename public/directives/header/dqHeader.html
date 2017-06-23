@@ -22,8 +22,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#/createQuiz">Create</a></li>
                 <li><a href="#/home">Home</a></li>
-                <li><a href="#/profile">Profile</a></li>
-                <li><a ng-click="logout()">Logout</a></li>
+                <li ng-show="loggedIn"><a href="#/profile">Profile</a></li>
+                <li><a ng-click="logout()" ng-show="loggedIn">Logout</a></li>
+                <li><a href="#/register" ng-show="!loggedIn">Register</a></li>
             </ul>
         </div>
     </div>

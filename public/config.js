@@ -123,33 +123,37 @@
             })
     }
 
-    function checkLoggedin($q, $timeout, $http, $location, $rootScope) {
+    function checkLoggedin($q, $location, $rootScope, AuthService) {
         var deferred = $q.defer();
-        $http.get('/api/loggedin').success(function(user) {
-            $rootScope.errorMessage = null;
-            if (user !== '0') {
-                $rootScope.currentUser = user;
-                deferred.resolve();
-            } else {
-                deferred.reject();
-                $location.url('/register');
-            }
-        });
+        AuthService
+            .isLoggedIn()
+            .success((user) => {
+                $rootScope.errorMessage = null;
+                if (user !== '0') {
+                    $rootScope.currentAuth = user;
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                    $location.url('/register');
+                }
+            });
         return deferred.promise;
     }
 
-    function autoLogin($q, $timeout, $http, $location, $rootScope) {
+    function autoLogin($q, $location, $rootScope, AuthService) {
         var deferred = $q.defer();
-        $http.get('/api/loggedin').success(function(user) {
-            $rootScope.errorMessage = null;
-            if (user !== '0') {
-                $rootScope.currentUser = user;
-                $location.url('/home/');
-                deferred.resolve();
-            } else {
-                deferred.resolve();
-            }
-        });
+        AuthService
+            .isLoggedIn()
+            .success((user) => {
+                $rootScope.errorMessage = null;
+                if (user !== '0') {
+                    $rootScope.currentAuth = user;
+                    $location.url('/home/');
+                    deferred.resolve();
+                } else {
+                    deferred.resolve();
+                }
+            });
         return deferred.promise;
     }
 })();

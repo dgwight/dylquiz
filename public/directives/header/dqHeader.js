@@ -14,6 +14,12 @@
                     const client = algolia.Client('V5A9XWTQ4C', '2deca3f7fbaccbd2657a2d06c6252c1b');
                     const index = client.initIndex('getstarted_actors');
 
+                    AuthService
+                        .isLoggedIn()
+                        .success((user) => {
+                            $scope.loggedIn = user !== '0';
+                        });
+
                     $scope.getDatasets = function () {
                         return {
                             source: algolia.sources.hits(index, {hitsPerPage: 5}),
@@ -35,7 +41,7 @@
                             console.log(auth);
                             $location.url("/login");
                         })
-                    }
+                    };
                 }
             }
         })
