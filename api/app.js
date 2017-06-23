@@ -13,7 +13,6 @@ module.exports = function(app) {
             console.log ('Succeeded connected to: ' + connectionString);
 
             require("./router/answerRouter")(app);
-            require("./router/authRouter")(app);
             require("./router/questionRouter")(app);
             require("./router/quizRouter")(app);
             require("./router/recordRouter")(app);

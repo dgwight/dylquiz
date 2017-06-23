@@ -31,7 +31,7 @@ function CommonService(Model) {
 
     function update(id, object) {
         console.log("update", Model.modelName, id, object);
-        return Model.findByIdAndUpdate(id, object, {new: true});
+        return Model.findByIdAndUpdate(id, object, {upsert: true});
     }
 
     function remove(id) {

@@ -4,7 +4,7 @@
 (function () {
     angular
         .module("dylQuizApp")
-        .controller("LoginCtrl", function ($location, $rootScope, AuthService) {
+        .controller("LoginCtrl", function ($location, $rootScope, UserService) {
             const vm = this;
             vm.login = login;
 
@@ -18,10 +18,10 @@
                     return;
                 }
 
-                AuthService
+                UserService
                     .login(user)
                     .then(function (response) {
-                        $rootScope.currentAuth = response.data;
+                        $rootScope.currentUser = response.data;
                         $location.url("/home/");
                     }).catch(function (error) {
                         vm.alert = "Username " + user.username + " not found, please try again";

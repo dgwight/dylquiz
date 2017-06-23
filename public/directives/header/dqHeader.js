@@ -9,14 +9,15 @@
                 restrict: 'A',
                 replace: true,
                 templateUrl: "directives/header/dqHeader.html",
-                controller: function($location, $scope, algolia, AuthService) {
+                controller: function($location, $scope, algolia, UserService) {
 
                     const client = algolia.Client('V5A9XWTQ4C', '2deca3f7fbaccbd2657a2d06c6252c1b');
                     const index = client.initIndex('getstarted_actors');
 
-                    AuthService
+                    UserService
                         .isLoggedIn()
                         .success((user) => {
+                            console.log("dq: ", user);
                             $scope.loggedIn = user !== '0';
                         });
 
@@ -37,7 +38,7 @@
                     });
 
                     $scope.logout = function() {
-                        AuthService.logout().then((auth) => {
+                        UserService.logout().then((auth) => {
                             console.log(auth);
                             $location.url("/login");
                         })

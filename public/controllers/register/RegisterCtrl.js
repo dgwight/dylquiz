@@ -4,7 +4,7 @@
 (function () {
     angular
         .module("dylQuizApp")
-        .controller("RegisterCtrl", function ($location, $rootScope, AuthService) {
+        .controller("RegisterCtrl", function ($location, $rootScope, UserService) {
             const vm = this;
             vm.register = register;
 
@@ -23,10 +23,10 @@
                     vm.alert = "";
                 }
 
-                AuthService
+                UserService
                     .register(user)
                     .then(function(response) {
-                        $rootScope.currentAuth = response.data;
+                        $rootScope.currentUser = response.data;
                         $location.url("/home/");
                     });
             }

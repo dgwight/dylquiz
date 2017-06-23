@@ -3,13 +3,18 @@
  */
 const mongoose = require("mongoose");
 
-const UserSchema = mongoose.Schema({
-    username: String,
+const AuthSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
-    email: String,
     phone: String,
+    username: String,
+    email: String,
+    password: String,
+    facebook: {
+        id:    String,
+        token: String
+    },
     dateCreated: {type: Date, default: Date.now}
 });
 
-module.exports = UserSchema;
+module.exports = AuthSchema;

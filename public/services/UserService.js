@@ -1,27 +1,43 @@
 /**
- * Created by DylanWight on 5/23/17.
+ * Created by DylanWight on 6/22/17.
  */
 (function () {
     angular
         .module("dylQuizApp")
-        .factory("UserService", function (CommonService) {
+        .factory("UserService", function ($http, CommonService) {
 
-            var api = Object.create(CommonService);
-            api.findByUsername = findByUsername;
-            api.findByCredentials = findByCredentials;
+            const UserService = CommonService("auth");
+            UserService.findByUsername = findByUsername;
+            UserService.findByCredentials = findByCredentials;
+            UserService.login = login;
+            UserService.logout = logout;
+            UserService.register = register;
+            UserService.isLoggedIn = isLoggedIn;
 
-            return api;
+            return UserService;
 
             function findByUsername(username) {
-                return api.filter(function (user) {
-                    return user.username === username;
-                }).first;
+                return UserService.find({"username": username});
             }
 
-            function findByCredentials(username) {
-                return api.filter(function (user) {
-                    return user.username === username && user.password === password;
-                }).first;
+            function findByCredentials(username, password) {
+                return UserService.find({"username": username, "password": password});
+            }
+
+            function login(user) {
+                return $http.post("/api/login", user);
+            }
+
+            function logout() {
+                return $http.post("/api/logout");
+            }
+
+            function register(user) {
+                return $http.post("/api/register", user);
+            }
+
+            function isLoggedIn() {
+                return $http.get('/api/loggedin')
             }
         });
 })();

@@ -123,14 +123,14 @@
             })
     }
 
-    function checkLoggedin($q, $location, $rootScope, AuthService) {
+    function checkLoggedin($q, $location, $rootScope, UserService) {
         var deferred = $q.defer();
-        AuthService
+        UserService
             .isLoggedIn()
             .success((user) => {
                 $rootScope.errorMessage = null;
                 if (user !== '0') {
-                    $rootScope.currentAuth = user;
+                    $rootScope.currentUser = user;
                     deferred.resolve();
                 } else {
                     deferred.reject();
@@ -140,14 +140,14 @@
         return deferred.promise;
     }
 
-    function autoLogin($q, $location, $rootScope, AuthService) {
+    function autoLogin($q, $location, $rootScope, UserService) {
         var deferred = $q.defer();
-        AuthService
+        UserService
             .isLoggedIn()
             .success((user) => {
                 $rootScope.errorMessage = null;
                 if (user !== '0') {
-                    $rootScope.currentAuth = user;
+                    $rootScope.currentUser = user;
                     $location.url('/home/');
                     deferred.resolve();
                 } else {

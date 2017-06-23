@@ -8,7 +8,13 @@ function UserService () {
     const UserSchema = require("../schemas/userSchema");
     const UserModel = mongoose.model("User", UserSchema);
     const UserService = new CommonService(UserModel);
+    UserService.findByFacebookId = findByFacebookId;
+
     return UserService;
+
+    function findByFacebookId(facebookId) {
+        return Model.findOne({'facebook.id': facebookId});
+    }
 }
 
 module.exports = UserService;
