@@ -3,7 +3,7 @@
  */
 const mongoose = require("mongoose");
 
-const AuthSchema = mongoose.Schema({
+const UserSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
     phone: String,
@@ -14,7 +14,9 @@ const AuthSchema = mongoose.Schema({
         id:    String,
         token: String
     },
+    buddies: [String],
+    buddy_requests: [String],
     dateCreated: {type: Date, default: Date.now}
 });
 
-module.exports = AuthSchema;
+module.exports = UserSchema;

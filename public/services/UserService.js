@@ -13,8 +13,13 @@
             UserService.logout = logout;
             UserService.register = register;
             UserService.isLoggedIn = isLoggedIn;
+            UserService.sendBuddyRequest = sendBuddyRequest;
 
             return UserService;
+
+            function sendBuddyRequest(userId) {
+                return $http.post("/api/user/" + userId + "/send-buddy-request");
+            }
 
             function findByUsername(username) {
                 return UserService.find({"username": username});
@@ -37,7 +42,7 @@
             }
 
             function isLoggedIn() {
-                return $http.get('/api/loggedin')
+                return $http.get("/api/loggedin")
             }
         });
 })();

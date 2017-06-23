@@ -2,6 +2,9 @@
 
 <div class="container">
     <h2>{{model.user.username}}</h2>
+    <button class="btn btn-default"
+            ng-click="model.sendBuddyRequest(model.user)"
+            ng-hide="model.currentUser === model.user">Add Buddy</button>
     <div class="list-group">
         <div ng-repeat="record in model.records">
             <h3 class="media-heading">{{record._quiz.name}}</h3>

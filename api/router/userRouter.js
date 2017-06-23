@@ -20,6 +20,7 @@ function UserRouter(app) {
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     passport.use(new LocalStrategy(localStrategy));
 
+    app.post('/api/user/:uid/send-buddy-request', sendBuddyRequest);
     app.post  ('/api/login', passport.authenticate('local'), login);
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback', passport.authenticate('facebook', {
@@ -29,6 +30,17 @@ function UserRouter(app) {
     app.post('/api/logout', logout);
     app.post ('/api/register', register);
     app.get ('/api/loggedin', loggedin);
+
+    function sendBuddyRequest(req, res) {
+        console.log("sendBuddyRequest", req.url, req.user);
+        if (!req.user) {
+            res.sendStatus(403);
+            return;
+        }
+
+        UserService.sendBuddyRequest(req.params.uid, req.user._id)
+            .then((err, doc) => UserRouter.respond(err, doc, res));
+    }
 
     function localStrategy(username, password, done) {
         console.log("localStrategy");

@@ -9,11 +9,16 @@ function UserService () {
     const UserModel = mongoose.model("User", UserSchema);
     const UserService = new CommonService(UserModel);
     UserService.findByFacebookId = findByFacebookId;
+    UserService.sendBuddyRequest = sendBuddyRequest;
 
     return UserService;
 
     function findByFacebookId(facebookId) {
         return UserModel.findOne({'facebook.id': facebookId});
+    }
+
+    function sendBuddyRequest(userId, requesterId) {
+        return UserService.add(userId, requesterId, "buddy_requests");
     }
 }
 

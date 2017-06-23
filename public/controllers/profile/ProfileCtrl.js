@@ -6,8 +6,9 @@
         .module("dylQuizApp")
         .controller("ProfileCtrl", function ($rootScope, $routeParams, RecordService, UserService) {
             const vm = this;
-            vm.user = $rootScope.currentUser;
+            vm.currentUser = $rootScope.currentUser;
             vm.uid = $routeParams.uid;
+            vm.sendBuddyRequest = sendBuddyRequest;
 
             function init() {
                 getUser().then((user) => {
@@ -22,12 +23,15 @@
 
             init();
 
+            function sendBuddyRequest(user) {
+                UserService.sendBuddyRequest(user._id)
+            }
 
             function getUser() {
                 if (vm.uid) {
                     return UserService.findById(vm.uid);
                 } else {
-                    return Promise.resolve(vm.user);
+                    return Promise.resolve(vm.currentUser);
                 }
             }
         });
