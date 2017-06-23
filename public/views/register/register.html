@@ -1,4 +1,6 @@
 <div class="container">
+    <a class="btn btn-default" href="#/home"><span class="glyphicon glyphicon-remove"></span></a>
+    <br>
     <h1>Register</h1>
     <div class="alert alert-danger" ng-show="model.alert">{{model.alert}}</div>
     <input ng-model="model.user.username"
@@ -12,11 +14,12 @@
     <input ng-model="model.passwordConfirm"
            type="password"
            class="form-control"
-           placeholder="very password"/>
+           placeholder="confirm password"/>
     <a class="btn btn-primary btn-block"
        ng-click="model.register(model.user, model.passwordConfirm)">Register</a>
-    <a class="btn btn-danger btn-block"
-       href="#/login">Login</a>
-    <a class="btn btn-success btn-block"
-       href="#/home">Cancel</a>
+    <a href="/auth/facebook" class="btn btn-primary btn-block">
+        <span class="fa fa-facebook"></span>
+        Facebook
+    </a>
+    <a href="#/login">Already have an account? Login</a>
 </div>

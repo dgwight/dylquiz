@@ -23,8 +23,8 @@ function UserRouter(app) {
     app.post  ('/api/login', passport.authenticate('local'), login);
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-            successRedirect:"/assignment/#/home",
-            failureRedirect:"/assignment/#/login"
+            successRedirect:"/#/home",
+            failureRedirect:"/#/login"
         }));
     app.post('/api/logout', logout);
     app.post ('/api/register', register);
@@ -54,20 +54,21 @@ function UserRouter(app) {
                     if(user) {
                         return done(null, user);
                     } else {
+                        console.log(profile);
                         const user = {facebook: {
                             id: profile.id,
                             token: token
                         }};
                         console.log(user);
-                        UserModel
+                        UserService
                             .create(user)
                             .then(function(user) {
                                 console.log("user created");
                                 return done(null, user);
                             }).catch(function(error) {
-                            console.log(error);
-                            return done(error, false);
-                        });
+                                console.log(error);
+                                return done(error, false);
+                            });
                     }
                 },
                 function(err) {

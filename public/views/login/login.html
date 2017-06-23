@@ -1,4 +1,6 @@
 <div class="container">
+    <a class="btn btn-default" href="#/home"><span class="glyphicon glyphicon-remove"></span></a>
+    <br>
     <h1>Login</h1>
     <div class="alert alert-danger" ng-show="model.alert">{{model.alert}}</div>
     <input ng-model="model.user.username"
@@ -11,8 +13,10 @@
            placeholder="password"/>
     <a class="btn btn-primary btn-block"
        ng-click="model.login(model.user)">Login</a>
-    <a class="btn btn-success btn-block"
-       href="#/register">Register</a>
-    <a class="btn btn-success btn-block"
-       href="#/home">Cancel</a>
+    <a href="/auth/facebook" class="btn btn-primary btn-block">
+        <span class="fa fa-facebook"></span>
+        Facebook
+    </a>
+    <hr>
+    <a href="#/register">New to DylQuiz? Create an account</a>
 </div>

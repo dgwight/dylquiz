@@ -13,7 +13,7 @@ function UserService () {
     return UserService;
 
     function findByFacebookId(facebookId) {
-        return Model.findOne({'facebook.id': facebookId});
+        return UserModel.findOne({'facebook.id': facebookId});
     }
 }
 
