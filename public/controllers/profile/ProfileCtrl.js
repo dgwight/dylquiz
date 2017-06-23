@@ -9,7 +9,7 @@
             vm.user = $rootScope.currentUser;
 
             function init() {
-                RecordService.find({_user: vm.user})
+                RecordService.find({_user: vm.user._id})
                     .then((records) => {
                         vm.records = records;
                     }).catch((error) => {
