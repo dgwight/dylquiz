@@ -34,7 +34,7 @@
                 QuizService
                     .remove(vm.qid)
                     .then(function (quiz) {
-                        $location.url("/home");
+                        $location.url("/createQuiz");
                     }).catch(function (error) {
                         console.log(error);
                     })

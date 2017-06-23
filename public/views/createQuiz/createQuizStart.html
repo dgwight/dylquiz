@@ -3,7 +3,7 @@
 <div class="container">
     <h2>How To Create Quiz:</h2>
     <ol>
-        <li>Create results: theses are the final characters, traits, or attributes the quiz take can get</li>
+        <li>Create results: theses are the final characters, traits, or attributes the quiz taker can get (Ned Stark, INTJ...)</li>
         <li>Create Questions: write each question that is included in the quiz</li>
         <li>For each question add answers: these answers will have one (or multiple) results that they give towards and
             a weight that they add to that result's final score.
@@ -12,11 +12,11 @@
     </ol>
     <div ng-show="model.inprogressQuizzes.length > 0">
       <hr>
-        <h4 >In progress</h4>
+        <h4 >Your unpublished quizzes</h4>
     </div>
     <div class="list-group">
         <a class="list-group-item" ng-repeat="quiz in model.inprogressQuizzes" href="#/createQuiz/{{quiz._id}}">
-            <div class="media" >
+            <div class="media">
                 <div class="media-left media-top">
                     <img class="media-object img-rounded" ng-src="{{quiz.imageUrl}}" width="140" height="140"
                          alt="{{quiz.name}}">

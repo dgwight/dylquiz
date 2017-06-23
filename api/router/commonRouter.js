@@ -26,7 +26,9 @@ function CommonRouter(app, Service, routeName) {
     }
 
     function create(req, res) {
-        console.log(req.url, req.body);
+        var object = req.body;
+        object._user = req.isAuthenticated() ? req.user._id : "";
+        console.log(req.url, object);
         Service.create(req.body).then((err, doc) => respond(err, doc, res));
     }
 

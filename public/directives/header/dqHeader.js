@@ -17,7 +17,6 @@
                     UserService
                         .isLoggedIn()
                         .success((user) => {
-                            console.log("dq: ", user);
                             $scope.loggedIn = user !== '0';
                         });
 

@@ -23,7 +23,7 @@ function UserRouter(app) {
     app.post  ('/api/login', passport.authenticate('local'), login);
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
     app.get('/auth/facebook/callback', passport.authenticate('facebook', {
-            successRedirect:"/assignment/#/login",
+            successRedirect:"/assignment/#/home",
             failureRedirect:"/assignment/#/login"
         }));
     app.post('/api/logout', logout);
@@ -106,7 +106,7 @@ function UserRouter(app) {
     }
 
     function loggedin(req, res) {
-        res.send(req.isAuthenticated() ? req.auth : '0');
+        res.send(req.isAuthenticated() ? req.user : '0');
     }
 
     passport.serializeUser(serializeUser);

@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const QuestionSchema = mongoose.Schema({
     text: String,
     _quiz: String,
+    _user: String,
     dateCreated: {type: Date, default: Date.now}
 });
 

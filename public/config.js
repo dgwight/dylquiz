@@ -38,7 +38,8 @@
             .when("/createQuiz", {
                 templateUrl: "views/createQuiz/createQuizStart.html",
                 controller: "CreateQuizStartCtrl",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
             })
             .when("/createQuiz/:qid", {
                 templateUrl: "views/createQuiz/createQuizInfo/createQuizInfo.html",

@@ -4,12 +4,12 @@
 (function () {
     angular
         .module("dylQuizApp")
-        .controller("CreateQuizStartCtrl", function ($routeParams, $location, QuizService) {
+        .controller("CreateQuizStartCtrl", function ($rootScope, $routeParams, $location, QuizService) {
             const vm = this;
             vm.createQuiz = createQuiz;
 
             function init() {
-                QuizService.find({})
+                QuizService.find({_user: $rootScope.currentUser._id})
                     .then(function (quizzes) {
                         vm.quizzes = quizzes;
                         vm.inprogressQuizzes = quizzes.filter((quiz) => !quiz.published);
