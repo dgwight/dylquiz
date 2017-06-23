@@ -35,6 +35,11 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
+            .when("/user/:uid", {
+                templateUrl: "views/profile/profile.html",
+                controller: "ProfileCtrl",
+                controllerAs: "model",
+            })
             .when("/createQuiz", {
                 templateUrl: "views/createQuiz/createQuizStart.html",
                 controller: "CreateQuizStartCtrl",

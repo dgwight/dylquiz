@@ -6,7 +6,7 @@
         .module("dylQuizApp")
         .factory("UserService", function ($http, CommonService) {
 
-            const UserService = CommonService("auth");
+            const UserService = CommonService("user");
             UserService.findByUsername = findByUsername;
             UserService.findByCredentials = findByCredentials;
             UserService.login = login;
