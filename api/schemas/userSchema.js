@@ -16,6 +16,7 @@ const UserSchema = mongoose.Schema({
     },
     buddies: [String],
     buddy_requests: [String],
+    algolia_id: String,
     dateCreated: {type: Date, default: Date.now}
 });
 

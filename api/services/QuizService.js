@@ -7,7 +7,7 @@ const CommonService = require("./CommonService");
 function QuizService () {
 
     const algoliasearch = require("algoliasearch");
-    const client = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA__ADMIN_KEY);
+    const client = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_ADMIN_KEY);
     const index = client.initIndex("quizzes");
 
     const QuizSchema = require("../schemas/quizSchema");

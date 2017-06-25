@@ -6,7 +6,7 @@ const CommonService = require('./CommonService');
 
 function UserService () {
     const algoliasearch = require("algoliasearch");
-    const client = algoliasearch(processs.env.ALGOLIA_APP_ID, processs.env.ALGOLIA__ADMIN_KEY);
+    const client = algoliasearch(process.env.ALGOLIA_APP_ID, process.env.ALGOLIA_ADMIN_KEY);
     const index = client.initIndex("users");
 
     const UserSchema = require("../schemas/userSchema");
@@ -14,8 +14,8 @@ function UserService () {
     const UserService = new CommonService(UserModel);
     UserService.findByFacebookId = findByFacebookId;
     UserService.sendBuddyRequest = sendBuddyRequest;
-    UserModel.create = create;
-    UserModel.update = update;
+    UserService.create = create;
+    UserService.update = update;
 
     return UserService;
 
@@ -28,7 +28,9 @@ function UserService () {
     }
 
     function create(user) {
+        console.log("createUser");
         return UserModel.create(user).then((user) => {
+            this.user = user;
             const algoliaUser = {
                 _id: user._id,
                 username: user.username,
@@ -36,23 +38,27 @@ function UserService () {
                 lastName: user.lastName,
                 email: user.email
             };
-            index.addObjects([algoliaUser]);
+            return index.addObject(algoliaUser);
+        }).then((content, err) => {
+            console.log(content);
+            return UserModel.findByIdAndUpdate(user._id, {algolia_id: content.objectID}, {upsert: true});
         });
     }
 
-    function update(user) {
-        return UserModel.create(user).then((user) => {
-            const algoliaUser = {
-                _id: user._id,
-                username: user.username,
-                firstName: user.firstName,
-                lastName: user.lastName,
-                email: user.email
-            };
-            index.saveObject(algoliaUser, function(err, content) {
-                console.log(err, content);
+    function update(userId, user) {
+        console.log("updateUser");
+        return UserModel.findByIdAndUpdate(userId, user, {upsert: true})
+            .then((user) => {
+                const algoliaUser = {
+                    _id: user._id,
+                    username: user.username,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email,
+                    objectID: user.algolia_id
+                };
+                index.saveObject(algoliaUser)
             });
-        });
     }
 }
 
