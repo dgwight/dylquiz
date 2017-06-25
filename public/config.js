@@ -5,6 +5,7 @@
     angular
         .module("dylQuizApp")
         .config(Config);
+
     function Config($routeProvider) {
         $routeProvider
             .when("/", {
@@ -126,7 +127,7 @@
                 templateUrl: "views/404/404.html",
                 // controller: "LoginCtrl",
                 // controllerAs: "model"
-            })
+            });
     }
 
     function checkLoggedin($q, $location, $rootScope, UserService) {

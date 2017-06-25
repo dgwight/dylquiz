@@ -13,10 +13,12 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.13.4",
     "express-session": "^1.15.3",
+    "install": "^0.10.1",
     "lodash": "^4.17.4",
     "mongojs": "^2.4.0",
     "mongoose": "^4.4.15",
     "newrelic": "^1.39.1",
+    "npm": "^5.0.3",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0"
@@ -26,6 +28,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "Jose G. Annunziato",
+  "author": "Dylan G. Wight",
   "license": "ISC"
 }
