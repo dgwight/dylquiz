@@ -16,6 +16,7 @@ function UserService () {
     UserService.sendBuddyRequest = sendBuddyRequest;
     UserService.create = create;
     UserService.update = update;
+    UserService.remove = remove;
 
     return UserService;
 
@@ -58,6 +59,18 @@ function UserService () {
                     objectID: user.algolia_id
                 };
                 index.saveObject(algoliaUser)
+            });
+    }
+
+    function remove(userId) {
+        console.log("removeUser");
+
+        return UserModel.findByIdAndRemove(userId)
+            .then((user) => {
+                if (!user)
+                    return null;
+                index.deleteObject(user.algolia_id);
+                return user;
             });
     }
 }

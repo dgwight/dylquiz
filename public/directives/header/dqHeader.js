@@ -16,7 +16,7 @@
 
                     const client = algolia.Client(algoliaId, algoliaKey);
                     const quizzes = client.initIndex('quizzes');
-                    const actors = client.initIndex('getstarted_actors');
+                    const users = client.initIndex('users');
 
                     UserService
                         .isLoggedIn()
@@ -25,12 +25,7 @@
                         });
 
                     $scope.getDatasets = function () {
-                        return {
-                            debug: true, templates: {
-                                dropdownMenu: '<div class="aa-dataset-player"></div>' +
-                                '<div class="aa-dataset-team"></div>'
-                            }
-                        }, [{
+                        return [{
                             source: algolia.sources.hits(quizzes, {hitsPerPage: 3}),
                             displayKey: 'my_attribute',
                             templates: {
@@ -43,21 +38,25 @@
                                 empty: '<div class="aa-empty">No matching quizzes</div>'
                             }
                         }, {
-                            source: algolia.sources.hits(actors, {hitsPerPage: 8}),
+                            source: algolia.sources.hits(users, {hitsPerPage: 8}),
                             displayKey: 'my_attribute',
                             templates: {
-                                header: '<div class="aa-suggestions-category">Actors</div>',
+                                header: '<div class="aa-suggestions-category">Users</div>',
                                 suggestion: function (suggestion) {
-                                    return '<div><span>' + suggestion._highlightResult.name.value + '</span><</div>';
+                                    return '<div><span>' + suggestion._highlightResult.username.value + '</span><</div>';
                                 },
                                 empty: '<div class="aa-empty">No matching users</div>'
                             }
                         }];
                     };
 
-                    $scope.$on('autocomplete:selected', function (event, suggestion, dataset) {
-                        console.log(suggestion.name, dataset);
-                        $location.url("/takeQuiz/" + suggestion._id);
+                    $scope.$on('autocomplete:selected', function (event, suggestion, dataset, more) {
+                        console.log(suggestion);
+                        if (suggestion.username) {
+                            $location.url("/user/" + suggestion._id);
+                        } else {
+                            $location.url("/takeQuiz/" + suggestion._id);
+                        }
                     });
 
                     $scope.logout = function () {
