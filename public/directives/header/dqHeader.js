@@ -45,9 +45,10 @@
                                 suggestion: function (suggestion) {
                                     return '<div><span>' + suggestion._highlightResult.username.value + '</span><</div>';
                                 },
-                                empty: '<div class="aa-empty">No matching users</div>'
+                                empty: '<div class="aa-empty">No matching users</div>',
+                                footer: '<div class="autocomplete-footer"> <div class="autocomplete-footer-branding pull-right align-bottom">powered by <img width="64px" class="algolia-logo" src="https://www.algolia.com/assets/algolia128x40.png" alt="Algolia"/></div></div>'
                             }
-                        }];
+                    }];
                     };
 
                     $scope.$on('autocomplete:selected', function (event, suggestion, dataset, more) {
