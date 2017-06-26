@@ -37,7 +37,7 @@
                 resolve: { loggedin: checkLoggedin }
             })
             .when("/user/:uid", {
-                templateUrl: "views/profile/profile.html",
+                templateUrl: "views/user/user.html",
                 controller: "ProfileCtrl",
                 controllerAs: "model",
             })
@@ -134,7 +134,7 @@
         var deferred = $q.defer();
         UserService
             .isLoggedIn()
-            .success((user) => {
+            .then((user) => {
                 $rootScope.errorMessage = null;
                 if (user !== '0') {
                     $rootScope.currentUser = user;
@@ -151,7 +151,7 @@
         var deferred = $q.defer();
         UserService
             .isLoggedIn()
-            .success((user) => {
+            .then((user) => {
                 $rootScope.errorMessage = null;
                 if (user !== '0') {
                     $rootScope.currentUser = user;

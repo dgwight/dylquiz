@@ -133,3 +133,8 @@ body {
     vertical-align: top; }
 .aa-empty {
     padding: 6px 12px; }
+
+.aa-input-icon {
+    color: #cccccc;
+    margin-right: 4px;
+}

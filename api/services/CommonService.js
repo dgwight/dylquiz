@@ -10,7 +10,8 @@ function CommonService(Model) {
         "create": create,
         "update": update,
         "remove": remove,
-        "add": add
+        "add": add,
+        "removeFrom": removeFrom
     };
     return api;
 
@@ -31,7 +32,7 @@ function CommonService(Model) {
 
     function update(id, object) {
         console.log("update", Model.modelName, id, object);
-        return Model.findByIdAndUpdate(id, object, {upsert: true});
+        return Model.findByIdAndUpdate(id, object, {upsert: true, new: true});
     }
 
     function remove(id) {
@@ -45,9 +46,18 @@ function CommonService(Model) {
             if (model[fieldName].indexOf(object) === -1) {
                 var push = {};
                 push[fieldName] = object;
-                return Model.findByIdAndUpdate(id, {$push: push}, {safe: true, upsert: true});
+                return Model.findByIdAndUpdate(id, {$push: push}, {safe: true, upsert: true, new: true});
+            } else {
+                console.log("already present");
             }
         });
+    }
+
+    function removeFrom(id, object, fieldName) {
+        console.log("removeFrom", Model.modelName, id, object, fieldName);
+        var pull = {};
+        pull[fieldName] = object;
+        return Model.findByIdAndUpdate(id, { $pull: pull }, {new: true});
     }
 }
 
