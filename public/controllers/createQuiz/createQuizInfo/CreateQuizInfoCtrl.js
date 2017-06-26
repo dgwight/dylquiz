@@ -31,13 +31,15 @@
             }
 
             function deleteQuiz(quiz) {
-                QuizService
-                    .remove(vm.qid)
-                    .then(function (quiz) {
-                        $location.url("/createQuiz");
-                    }).catch(function (error) {
+                if (confirm('Are you sure you want to delete this quiz?')) {
+                    QuizService
+                        .remove(vm.qid)
+                        .then(function (quiz) {
+                            $location.url("/createQuiz");
+                        }).catch(function (error) {
                         console.log(error);
                     })
+                }
             }
         });
 })();

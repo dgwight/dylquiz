@@ -34,13 +34,15 @@
             }
 
             function removeResult(result) {
-                ResultService
-                    .remove(result._id)
-                    .then(function (result) {
-                        $location.url("/createQuiz/" + vm.qid + "/result");
-                    }).catch(function (error) {
-                        console.log(error);
-                    })
+                if (confirm('Are you sure you want to delete this result?')) {
+                    ResultService
+                        .remove(result._id)
+                        .then(function (result) {
+                            $location.url("/createQuiz/" + vm.qid + "/result");
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                }
             }
         });
 })();

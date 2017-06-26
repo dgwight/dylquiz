@@ -1,5 +1,3 @@
-<div dq-header></div>
-
 <div class="container">
     <h5>{{model.question.text}}</h5>
     <div id="results" class="form-check" ng-repeat="answer in model.answers">
@@ -12,14 +10,8 @@
             </label>
         </div>
     </div>
+    <br>
+    <button class="btn btn-primary btn-s btn-block"
+            ng-click="model.answerQuestion(model.record._id, model.selectedAnswer)">
+        Next Question</button>
 </div>
-
-<nav id="footer" class="navbar navbar-fixed-bottom">
-    <div class="container-fluid">
-        <nav aria-label="...">
-            <ul class="pager">
-                <li><a ng-click="model.answerQuestion(model.record._id, model.selectedAnswer)">Next</a></li>
-            </ul>
-        </nav>
-    </div>
-</nav>

@@ -54,13 +54,15 @@
             }
 
             function removeAnswer(answer) {
-                AnswerService
-                    .remove(answer._id)
-                    .then(function (answer) {
-                        $location.url("/createQuiz/" + vm.qid + "/question/" + vm.qnid);
-                    }).catch(function (error) {
-                        console.log(error);
-                    })
+                if (confirm('Are you sure you want to delete this answer?')) {
+                    AnswerService
+                        .remove(answer._id)
+                        .then(function (answer) {
+                            $location.url("/createQuiz/" + vm.qid + "/question/" + vm.qnid);
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                }
             }
 
             function toggleSelection(result) {

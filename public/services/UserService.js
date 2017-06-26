@@ -89,5 +89,9 @@
                     return response.data;
                 });
             }
+
+            function sentBuddyRequest(userId, requestee) {
+
+            }
         });
 })();

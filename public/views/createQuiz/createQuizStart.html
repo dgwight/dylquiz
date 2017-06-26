@@ -1,41 +1,32 @@
-<div dq-header></div>
-
 <div class="container">
     <h2>How To Create Quiz:</h2>
     <ol>
-        <li>Create results: theses are the final characters, traits, or attributes the quiz taker can get (Ned Stark, INTJ...)</li>
+        <li>Create results: theses are the final characters, traits, or attributes the quiz taker can get (Ned Stark,
+            INTJ...)
+        </li>
         <li>Create Questions: write each question that is included in the quiz</li>
         <li>For each question add answers: these answers will have one (or multiple) results that they give towards and
             a weight that they add to that result's final score.
         </li>
         <li>Publish quiz: Once you're done creating a new quiz, publish it so others can take it!</li>
     </ol>
-    <div ng-show="model.inprogressQuizzes.length > 0">
-      <hr>
-        <h4 >Your unpublished quizzes</h4>
-    </div>
-    <div class="list-group">
-        <a class="list-group-item" ng-repeat="quiz in model.inprogressQuizzes" href="#/createQuiz/{{quiz._id}}">
-            <div class="media">
-                <div class="media-left media-top">
-                    <img class="media-object img-rounded" ng-src="{{quiz.imageUrl}}" width="140" height="140"
-                         alt="{{quiz.name}}">
+    <button class="btn btn-primary btn-s btn-block" ng-click="model.createQuiz(model.quiz)">New Quiz</button>
+    <hr>
+    <div class="panel panel-default" ng-show="model.inprogressQuizzes.length">
+        <div class="panel-heading">Unpublished Quizzes</div>
+        <div class="list-group">
+            <a class="list-group-item" ng-repeat="quiz in model.inprogressQuizzes" href="#/createQuiz/{{quiz._id}}">
+                <div class="media">
+                    <div class="media-left media-top">
+                        <img class="media-object img-rounded" ng-src="{{quiz.imageUrl}}" width="140" height="140"
+                             alt="{{quiz.name}}">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{quiz.name}}</h4>
+                        {{quiz.description}}
+                    </div>
                 </div>
-                <div class="media-body">
-                    <h4 class="media-heading">{{quiz.name}}</h4>
-                    {{quiz.description}}
-                </div>
-            </div>
-        </a>
+            </a>
+        </div>
     </div>
 </div>
-
-<nav id="footer" class="navbar navbar-fixed-bottom">
-    <div class="container-fluid">
-        <nav aria-label="...">
-            <ul class="pager">
-                <li><a ng-click="model.createQuiz(model.quiz)">Start</span></a></li>
-            </ul>
-        </nav>
-    </div>
-</nav>

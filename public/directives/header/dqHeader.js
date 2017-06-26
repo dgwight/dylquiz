@@ -22,6 +22,7 @@
                         .isLoggedIn()
                         .then((user) => {
                             $scope.loggedIn = user !== '0';
+                            $scope.isAdmin = user.admin !== '0';
                         });
 
                     $scope.getDatasets = function () {

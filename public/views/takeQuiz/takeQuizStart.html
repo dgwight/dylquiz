@@ -1,5 +1,3 @@
-<div dq-header></div>
-
 <div class="container">
     <h1>Start Quiz</h1>
     <li class="media">
@@ -14,14 +12,6 @@
             {{model.quiz.description}}
         </div>
     </li>
+    <br>
+    <button class="btn btn-primary btn-s btn-block" ng-click="model.startQuiz(model.quiz)">Start Quiz</button>
 </div>
-
-<nav id="footer" class="navbar navbar-fixed-bottom">
-    <div class="container-fluid">
-        <nav aria-label="...">
-            <ul class="pager">
-                <li><a ng-click="model.startQuiz(model.quiz)">Start</a></li>
-            </ul>
-        </nav>
-    </div>
-</nav>

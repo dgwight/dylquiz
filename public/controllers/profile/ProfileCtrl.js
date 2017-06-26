@@ -17,7 +17,7 @@
                 getUser().then((user) => {
                     vm.user = user;
                     RecordService.find({_user: user._id}).then((records) => {
-                        vm.records = records;
+                        vm.records = records.filter((record) => record.published);
                     });
 
                     loadBuddies(user);

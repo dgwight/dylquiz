@@ -90,7 +90,7 @@ function UserService () {
 
     function update(userId, user) {
         console.log("updateUser");
-        return UserModel.findByIdAndUpdate(userId, user, {upsert: true})
+        return UserModel.findByIdAndUpdate(userId, user, {upsert: true, new: true})
             .then((user) => {
                 const algoliaUser = {
                     _id: user._id,
@@ -100,7 +100,8 @@ function UserService () {
                     email: user.email,
                     objectID: user.algolia_id
                 };
-                index.saveObject(algoliaUser)
+                index.saveObject(algoliaUser);
+                return user;
             });
     }
 

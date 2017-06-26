@@ -1,0 +1,30 @@
+<div dq-header></div>
+
+<div class="container">
+    <form>
+        <div class="alert alert-danger" ng-show="model.alert">{{model.alert}}</div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input ng-model="model.user.username" type="text" class="form-control" id="username" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input ng-model="model.user.email" type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
+        </div>
+        <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input ng-model="model.user.firstName" type="text" class="form-control" id="first-name" placeholder="Alice">
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input ng-model="model.user.lastName" type="text" class="form-control" id="last-name" placeholder="Wonderland">
+        </div>
+        <div class="form-group">
+            <label for="image-url">Profile Image</label>
+            <input ng-model="model.user.imageUrl" type="url" class="form-control" id="image-url" placeholder="my-pic.com">
+        </div>
+    </form>
+    {{model.user.imageUrl}}
+    <a class="btn btn-primary btn-block"
+       ng-click="model.updateUser(model.user)">Save</a>
+</div>

@@ -36,6 +36,18 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
+            .when("/settings", {
+                templateUrl: "views/settings/settings.html",
+                controller: "SettingsCtrl",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
+            .when("/admin", {
+                templateUrl: "views/admin/admin.html",
+                controller: "AdminCtrl",
+                controllerAs: "model",
+                resolve: { loggedin: checkAdmin }
+            })
             .when("/user/:uid", {
                 templateUrl: "views/user/user.html",
                 controller: "ProfileCtrl",
@@ -163,4 +175,22 @@
             });
         return deferred.promise;
     }
+
+    function checkAdmin($q, $location, $rootScope, UserService) {
+        var deferred = $q.defer();
+        UserService
+            .isLoggedIn()
+            .then((user) => {
+                $rootScope.errorMessage = null;
+                if (user && user.admin) {
+                    $rootScope.currentUser = user;
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                    $location.url('/home');
+                }
+            });
+        return deferred.promise;
+    }
+
 })();

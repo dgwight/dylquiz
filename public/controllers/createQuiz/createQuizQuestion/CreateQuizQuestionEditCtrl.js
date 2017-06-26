@@ -43,13 +43,15 @@
             }
 
             function removeQuestion(question) {
-                QuestionService
-                    .remove(question._id)
-                    .then(function (question) {
-                        $location.url("/createQuiz/" + vm.qid + "/question");
-                    }).catch(function (error) {
-                        console.log(error);
-                    })
+                if (confirm('Are you sure you want to delete this question?')) {
+                    QuestionService
+                        .remove(question._id)
+                        .then(function (question) {
+                            $location.url("/createQuiz/" + vm.qid + "/question");
+                        }).catch(function (error) {
+                            console.log(error);
+                        })
+                }
             }
 
             function addAnswer(question) {

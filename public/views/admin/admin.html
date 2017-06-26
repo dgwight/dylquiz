@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="panel panel-default" >
+        <div class="panel-heading">Users</div>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="user in model.users">
+                {{user._id}} - {{user.username}}
+                <div class="pull-right">
+                    <a ng-click="model.deleteUser(user)" class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>
+                    <a class="btn btn-default btn-xs glyphicon glyphicon-cog"></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="panel panel-default" >
+        <div class="panel-heading">Quizzes</div>
+        <ul class="list-group">
+            <li class="list-group-item" ng-repeat="quiz in model.quizzes">
+                - {{quiz.name}}
+                <div class="pull-right">
+                    <a ng-click="model.deleteQuiz(quiz)" class="btn btn-danger btn-xs glyphicon glyphicon-remove"></a>
+                    <a href="#/createQuiz/{{quiz._id}}" class="btn btn-default btn-xs glyphicon glyphicon-cog"></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

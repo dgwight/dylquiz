@@ -1,22 +1,36 @@
-<div dq-header></div>
-
 <div class="container">
-    <h2>{{model.user.username}}</h2>
-    <div class="list-group">
-        <div ng-repeat="record in model.records">
-            <h3 class="media-heading">{{record._quiz.name}}</h3>
-            <a class="list-group-item"  href="#/record/{{record._id}}">
-            <div class="media">
-                <div >
-                    <img class="media-object img-rounded" ng-src="{{record._result.imageUrl}}" width="140" height="140"
-                         alt="{{record._result.name}}">
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">{{record._result.name}}</h4>
-                    {{record._result.description}}
-                </div>
+    <a href="#/settings"
+       class="btn btn-default btn-s glyphicon glyphicon-cog pull-right"></a>
+    <div class="media">
+        <div>
+            <img class="media-object img-rounded" ng-src="{{model.user.imageUrl}}" width="140"
+                 height="140"
+                 alt="{{model.user.username}}">
+        </div>
+        <div class="media-body">
+            <h2 class="media-heading">{{model.user.username}}</h2>
+        </div>
+    </div>
+    <hr>
+    <div class="panel panel-default" ng-show="model.records.length">
+        <div class="panel-heading">Results</div>
+        <div class="list-group">
+            <div ng-repeat="record in model.records">
+                <a class="list-group-item" href="#/record/{{record._id}}">
+                    <h3 class="media-heading">{{record._quiz.name}}</h3>
+                    <div class="media">
+                        <div>
+                            <img class="media-object img-rounded" ng-src="{{record._result.imageUrl}}" width="140"
+                                 height="140"
+                                 alt="{{record._result.name}}">
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{record._result.name}}</h4>
+                            {{record._result.description}}
+                        </div>
+                    </div>
+                </a>
             </div>
-        </a>
         </div>
     </div>
 
@@ -26,8 +40,10 @@
             <li class="list-group-item" ng-repeat="buddyRequest in model.buddyRequests">
                 {{buddyRequest._id}}
                 <div class="pull-right">
-                    <button ng-click="model.acceptBuddyRequest(buddyRequest._id)" class="btn btn-primary btn-xs glyphicon glyphicon-ok"></button>
-                    <button ng-click="model.removeBuddyRequest(buddyRequest._id)" class="btn btn-danger btn-xs glyphicon glyphicon-remove"></button>
+                    <button ng-click="model.acceptBuddyRequest(buddyRequest._id)"
+                            class="btn btn-primary btn-xs glyphicon glyphicon-ok"></button>
+                    <button ng-click="model.removeBuddyRequest(buddyRequest._id)"
+                            class="btn btn-danger btn-xs glyphicon glyphicon-remove"></button>
                 </div>
             </li>
         </ul>
@@ -39,7 +55,8 @@
             <li class="list-group-item" ng-repeat="buddy in model.buddies">
                 {{buddy._id}}
                 <div class="pull-right">
-                    <button ng-click="model.removeBuddy(buddy._id)" class="btn btn-danger btn-xs glyphicon glyphicon-remove"></button>
+                    <button ng-click="model.removeBuddy(buddy._id)"
+                            class="btn btn-danger btn-xs glyphicon glyphicon-remove"></button>
                 </div>
             </li>
         </ul>
