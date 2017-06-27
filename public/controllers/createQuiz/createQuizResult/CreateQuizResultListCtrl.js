@@ -6,7 +6,6 @@
         .module("dylQuizApp")
         .controller("CreateQuizResultListCtrl", function ($routeParams, $location, QuizService, ResultService) {
             const vm = this;
-
             vm.qid = $routeParams["qid"];
 
             function init() {

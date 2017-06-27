@@ -126,12 +126,6 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkLoggedin }
             })
-            .when("/createQuiz/:qid/complete", {
-                templateUrl: "views/createQuiz/createQuizComplete.html",
-                controller: "CreateQuizCompleteCtrl",
-                controllerAs: "model",
-                resolve: { loggedin: checkLoggedin }
-            })
             .when("/takeQuiz/:qid", {
                 templateUrl: "views/takeQuiz/takeQuizStart.html",
                 controller: "TakeQuizStartCtrl",

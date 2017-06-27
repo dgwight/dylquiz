@@ -6,6 +6,7 @@
         .module("dylQuizApp")
         .controller("CreateQuizQuestionListCtrl", function ($routeParams, $location, QuizService, QuestionService) {
             const vm = this;
+            vm.publishQuiz = publishQuiz;
             vm.qid = $routeParams["qid"];
 
             function init() {
@@ -25,5 +26,15 @@
             }
 
             init();
+
+            function publishQuiz() {
+                QuizService
+                    .update(vm.qid, {published: true})
+                    .then(function (quiz) {
+                        $location.url("/home/");
+                    }).catch(function (error) {
+                    console.log(error);
+                })
+            }
         });
 })();

@@ -5,21 +5,24 @@
             <a href="#/createQuiz/{{model.qid}}/question/new"
                class="btn btn-primary btn-xs glyphicon glyphicon-plus pull-right"></a>
         </div>
-    <div class="list-group">
-        <a ng-repeat="question in model.questions track by $index" href="#/createQuiz/{{model.qid}}/question/{{question._id}}"
-           class="list-group-item">
-            Q{{$index + 1}}. {{question.text}}
-        </a>
+        <div class="list-group">
+            <a ng-repeat="question in model.questions track by $index"
+               href="#/createQuiz/{{model.qid}}/question/{{question._id}}"
+               class="list-group-item">
+                Q{{$index + 1}}. {{question.text}}
+            </a>
+        </div>
     </div>
-</div>
 
-<nav id="footer" class="navbar navbar-fixed-bottom">
-    <div class="container-fluid">
-        <nav aria-label="...">
-            <ul class="pager">
-                <li class="previous"><a href="#/createQuiz/{{model.qid}}/result"><span aria-hidden="true">&larr;</span> Results</a></li>
-                <li class="next"><a href="#/createQuiz/{{model.qid}}/complete">Publish <span aria-hidden="true">&rarr;</span></a></li>
-            </ul>
-        </nav>
-    </div>
-</nav>
+    <button class="btn btn-primary btn-s btn-block" ng-click="model.publishQuiz(model.quiz)">Publish Quiz!</button>
+
+    <nav id="footer" class="navbar navbar-fixed-bottom">
+        <div class="container-fluid">
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li class="previous"><a href="#/createQuiz/{{model.qid}}/result"><span
+                            aria-hidden="true">&larr;</span> Results</a></li>
+                </ul>
+            </nav>
+        </div>
+    </nav>
