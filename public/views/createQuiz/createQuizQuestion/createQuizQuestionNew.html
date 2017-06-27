@@ -9,23 +9,27 @@
                   placeholder="Add a question"></textarea>
     </div>
     <hr>
-    <label for="answers">Answers</label>
-    <div id="answers" class="list-group">
-        <a ng-repeat="answer in model.answers" href="#/createQuiz/{{model.qid}}/question/{{model.qnid}}/answer/{{answer._id}}"
-           class="list-group-item">
-            {{answer.text}}
-        </a>
-        <a ng-click="model.addAnswer(model.question)" class="list-group-item active">Add Answer <span class="glyphicon glyphicon-plus"></span></a>
+    <div class="panel panel-default">
+        <div class="panel-heading">Answers
+            <a ng-click="model.addAnswer(model.question)"
+            class="btn btn-primary btn-xs glyphicon glyphicon-plus pull-right"></a>
+        </div>
+        <div id="answers" class="list-group">
+            <a ng-repeat="answer in model.answers"
+               href="#/createQuiz/{{model.qid}}/question/{{model.qnid}}/answer/{{answer._id}}"
+               class="list-group-item">
+                {{answer.text}}
+            </a>
+        </div>
     </div>
-</div>
 
-<nav id="footer" class="navbar navbar-fixed-bottom">
-    <div class="container-fluid">
-        <nav aria-label="...">
-            <ul class="pager">
-                <li class="previous"><a href="#/createQuiz/{{model.qid}}/question">Cancel</a></li>
-                <li class="next"><a ng-click="model.createQuestion(model.question)">Create</span></a></li>
-            </ul>
-        </nav>
-    </div>
-</nav>
+    <nav id="footer" class="navbar navbar-fixed-bottom">
+        <div class="container-fluid">
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li class="previous"><a href="#/createQuiz/{{model.qid}}/question">Cancel</a></li>
+                    <li class="next"><a ng-click="model.createQuestion(model.question)">Create</span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </nav>

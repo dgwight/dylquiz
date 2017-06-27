@@ -21,14 +21,8 @@ body {
 .navbar-dylquiz .navbar-brand {
     color: #dddddd;
 }
-
-.aa-input-container {
-    width: 250px;
-}
-@media (max-width : 767px) {
-    .aa-input-container {
-        width: 100%;
-    }
+.navbar-form {
+    margin-left: 0;
 }
 
 .algolia-autocomplete {
@@ -38,10 +32,11 @@ body {
     width: 100%;
 }
 
-@import 'https://fonts.googleapis.com/css?family=Montserrat:400,700';
 .aa-input-container {
     display: inline-block;
-    position: relative; }
+    position: relative;
+    width: 250px;
+}
 .aa-input-search {
     width: 300px;
     padding: 12px 28px 12px 12px;
@@ -64,6 +59,8 @@ body {
     border-color: #3a96cf;
     box-shadow: 4px 4px 0 rgba(58, 150, 207, 0.1); }
 .aa-input-icon {
+    color: #cccccc;
+    margin-right: 4px;
     height: 16px;
     width: 16px;
     position: absolute;
@@ -143,7 +140,16 @@ body {
 .aa-empty {
     padding: 6px 12px; }
 
-.aa-input-icon {
-    color: #cccccc;
-    margin-right: 4px;
+@media (max-width : 767px) {
+    .aa-input-container {
+        width: 100%;
+    }
+
+    .aa-dropdown-menu {
+        width: 100%;
+    }
+
+    .aa-dropdown-menu > div {
+        width: 100%;
+    }
 }

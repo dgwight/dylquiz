@@ -1,31 +1,37 @@
 <div class="container">
-    <h2>Results</h2>
-    <h5>Tap add result to create a new result</h5>
-    <div class="list-group">
-        <a class="list-group-item" ng-repeat="result in model.results" href="#/createQuiz/{{model.qid}}/result/{{result._id}}">
-            <div class="media" >
-                <div class="media-left media-top">
-                    <img class="media-object img-rounded" ng-src="{{result.imageUrl}}" width="140" height="140"
-                         alt="{{result.name}}">
+    <h4>Create some results, these are what the user can get at the end of the quiz (i.e. Ned Stark, INTJ, Ravenclaw)</h4>
+    <div class="panel panel-default">
+        <div class="panel-heading">Results
+            <a href="#/createQuiz/{{model.qid}}/result/new"
+               class="btn btn-primary btn-xs glyphicon glyphicon-plus pull-right"></a>
+        </div>
+        <div class="list-group">
+            <a class="list-group-item" ng-repeat="result in model.results"
+               href="#/createQuiz/{{model.qid}}/result/{{result._id}}">
+                <div class="media">
+                    <div class="media-left media-top">
+                        <img class="media-object img-rounded" ng-src="{{result.imageUrl}}" width="140" height="140"
+                             alt="{{result.name}}">
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{result.name}}</h4>
+                        {{result.description}}
+                    </div>
                 </div>
-                <div class="media-body">
-                    <h4 class="media-heading">{{result.name}}</h4>
-                    {{result.description}}
-                </div>
-            </div>
-        </a>
-        <a href="#/createQuiz/{{model.qid}}/result/new" class="list-group-item active">
-            Add Result <span class="glyphicon glyphicon-plus pull-right"></span>
-        </a>
+            </a>
+        </div>
     </div>
+
 </div>
 
 <nav id="footer" class="navbar navbar-fixed-bottom">
     <div class="container-fluid">
         <nav aria-label="...">
             <ul class="pager">
-                <li class="previous"><a href="#/createQuiz/{{model.qid}}"><span aria-hidden="true">&larr;</span> Info</a></li>
-                <li class="next"><a href="#/createQuiz/{{model.qid}}/question">Questions <span aria-hidden="true">&rarr;</span></a></li>
+                <li class="previous"><a href="#/createQuiz/{{model.qid}}"><span aria-hidden="true">&larr;</span>
+                    Info</a></li>
+                <li class="next"><a href="#/createQuiz/{{model.qid}}/question">Questions <span
+                        aria-hidden="true">&rarr;</span></a></li>
             </ul>
         </nav>
     </div>
