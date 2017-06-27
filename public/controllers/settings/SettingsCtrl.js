@@ -7,6 +7,7 @@
         .controller("SettingsCtrl", function ($rootScope, $location, UserService) {
             const vm = this;
             vm.updateUser = updateUser;
+            vm.back = back;
 
             function init() {
                 vm.user = JSON.parse(JSON.stringify($rootScope.currentUser));
@@ -20,6 +21,10 @@
                     }).catch((error) => {
                         vm.error = error;
                     });
+            }
+
+            function back() {
+                $location.url("/profile/");
             }
         });
 })();

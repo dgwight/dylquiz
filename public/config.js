@@ -48,6 +48,18 @@
                 controllerAs: "model",
                 resolve: { loggedin: checkAdmin }
             })
+            .when("/admin/createUser", {
+                templateUrl: "views/admin/adminNewUser.html",
+                controller: "AdminUserCtrl",
+                controllerAs: "model",
+                resolve: { loggedin: checkAdmin }
+            })
+            .when("/admin/:uid", {
+                templateUrl: "views/settings/settings.html",
+                controller: "AdminUserCtrl",
+                controllerAs: "model",
+                resolve: { loggedin: checkAdmin }
+            })
             .when("/user/:uid", {
                 templateUrl: "views/user/user.html",
                 controller: "ProfileCtrl",
