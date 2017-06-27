@@ -22,6 +22,15 @@ body {
     color: #dddddd;
 }
 
+.aa-input-container {
+    width: 250px;
+}
+@media (max-width : 767px) {
+    .aa-input-container {
+        width: 100%;
+    }
+}
+
 .algolia-autocomplete {
     width: 100%;
 }
