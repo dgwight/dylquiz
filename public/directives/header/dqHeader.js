@@ -11,8 +11,8 @@
                 templateUrl: "directives/header/dqHeader.html",
                 controller: function($location, $scope, algolia, UserService) {
 
-                    const algoliaId = "V5A9XWTQ4C";
-                    const algoliaKey = "2deca3f7fbaccbd2657a2d06c6252c1b";
+                    const algoliaId = "RZG1CU6ZG0"; // "V5A9XWTQ4C";
+                    const algoliaKey = "cc7fb86002824e9939b0046b128bfd0a"; //"2deca3f7fbaccbd2657a2d06c6252c1b";
 
                     const client = algolia.Client(algoliaId, algoliaKey);
                     const quizzes = client.initIndex('quizzes');
