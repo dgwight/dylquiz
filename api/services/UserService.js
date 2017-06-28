@@ -11,6 +11,7 @@ function UserService () {
 
     const UserSchema = require("../schemas/userSchema");
     const UserModel = mongoose.model("User", UserSchema);
+    const RecordService = require("../services/RecordService")();
     const UserService = new CommonService(UserModel);
     UserService.findByFacebookId = findByFacebookId;
     UserService.follow = follow;

@@ -23,7 +23,7 @@ function UserRouter(app) {
     app.post('/api/user/:uid/follow', follow);
     app.post('/api/user/:uid/unfollow', unfollow);
     app.get('/api/user/:uid/get-following', getFollowing);
-    app.get('/api/user/get-wall', getWall);
+    app.get('/api/user/:uid/get-wall', getWall);
 
     app.post  ('/api/login', passport.authenticate('local'), login);
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
@@ -57,12 +57,7 @@ function UserRouter(app) {
 
     function getWall(req, res) {
         console.log(req.url, req.user);
-        if (!req.user) {
-            res.sendStatus(403);
-            return;
-        }
-
-        UserService.getWall(req.user._id).then((err, doc) => UserRouter.respond(err, doc, res));
+        UserService.getWall(req.params.uid).then((err, doc) => UserRouter.respond(err, doc, res));
     }
 
     function getFollowing(req, res) {

@@ -142,6 +142,12 @@
                 controller: "RecordCtrl",
                 controllerAs: "model"
             })
+            .when("/wall", {
+                templateUrl: "views/wall/wall.html",
+                controller: "WallCtrl",
+                controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
+            })
             .otherwise({
                 templateUrl: "views/404/404.html",
             });
