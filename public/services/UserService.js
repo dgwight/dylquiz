@@ -13,47 +13,33 @@
             UserService.logout = logout;
             UserService.register = register;
             UserService.isLoggedIn = isLoggedIn;
-            UserService.sendBuddyRequest = sendBuddyRequest;
-            UserService.getBuddyRequests = getBuddyRequests;
-            UserService.getBuddies = getBuddies;
-            UserService.acceptBuddyRequest = acceptBuddyRequest;
-            UserService.removeBuddyRequest = removeBuddyRequest;
-            UserService.removeBuddy = removeBuddy;
+            UserService.follow = follow;
+            UserService.unfollow = unfollow;
+            UserService.getWall = getWall;
+            UserService.getFollowing = getFollowing;
 
             return UserService;
 
-            function sendBuddyRequest(userId) {
-                return $http.post("/api/user/" + userId + "/send-buddy-request").then((response) => {
+            function follow(userId) {
+                return $http.post("/api/user/" + userId + "/follow").then((response) => {
                     return response.data;
                 });
             }
 
-            function acceptBuddyRequest(userId) {
-                return $http.post("/api/user/" + userId + "/accept-buddy-request").then((response) => {
+            function unfollow(userId) {
+                return $http.post("/api/user/" + userId + "/unfollow").then((response) => {
                     return response.data;
                 });
             }
 
-            function removeBuddyRequest(userId) {
-                return $http.post("/api/user/" + userId + "/remove-buddy-request").then((response) => {
+            function getWall(userId) {
+                return $http.get("/api/user/" + userId + "/get-wall").then((response) => {
                     return response.data;
                 });
             }
 
-            function removeBuddy(userId) {
-                return $http.post("/api/user/" + userId + "/remove-buddy").then((response) => {
-                    return response.data;
-                });
-            }
-
-            function getBuddyRequests(userId) {
-                return $http.get("/api/user/" + userId + "/get-buddy-requests").then((response) => {
-                    return response.data;
-                });
-            }
-
-            function getBuddies(userId) {
-                return $http.get("/api/user/" + userId + "/get-buddies").then((response) => {
+            function getFollowing(userId) {
+                return $http.get("/api/user/" + userId + "/get-following").then((response) => {
                     return response.data;
                 });
             }

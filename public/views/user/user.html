@@ -1,9 +1,8 @@
 <div dq-header></div>
 
 <div class="container">
-    <button ng-click="model.sendBuddyRequest(model.user._id)"
+    <button ng-click="model.tappedFollowButton(model.user._id)"
             ng-hide="model.currentUser._id == model.user._id"
-            ng-disabled="model.isBuddyRequestSent() || model.isBuddy()"
             class="btn btn-default btn-s pull-right">{{model.buddyButtonText()}}</button>
     <div class="media">
         <div>
@@ -34,11 +33,11 @@
         </div>
     </div>
 
-    <div class="panel panel-default" ng-show="model.buddies.length">
-        <div class="panel-heading">Buddies</div>
+    <div class="panel panel-default" ng-show="model.following.length">
+        <div class="panel-heading">Following</div>
         <div class="list-group">
-            <a class="list-group-item" ng-repeat="buddy in model.buddies" href="#/user/{{buddy._id}}">
-                {{buddy.username}}
+            <a class="list-group-item" ng-repeat="follow in model.following" href="#/user/{{follow._id}}">
+                {{follow.username}}
             </a>
         </div>
     </div>

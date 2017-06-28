@@ -19,6 +19,7 @@ function UserService () {
     UserService.create = create;
     UserService.update = update;
     UserService.remove = remove;
+    UserService.getFollowing = getFollowing;
 
     return UserService;
 
@@ -26,13 +27,22 @@ function UserService () {
         return UserModel.findOne({'facebook.id': facebookId});
     }
 
-    function follow(userId, followId) {
+    function follow(followId, userId) {
         return UserService.add(userId, followId, "following");
     }
 
-    function unfollow(userId, followId) {
+    function unfollow(followId, userId) {
         console.log("unfollow", userId, followId);
         return UserService.removeFrom(userId, followId, "following");
+    }
+
+    function getFollowing(userId) {
+        console.log("getFollowing", userId);
+        return UserModel.findById(userId).then((user) => {
+            return UserModel.find({
+                '_id': { $in: user.following }
+            });
+        });
     }
 
     function getWall(userId) {

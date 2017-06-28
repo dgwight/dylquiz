@@ -49,6 +49,7 @@ function CommonService(Model) {
                 return Model.findByIdAndUpdate(id, {$push: push}, {safe: true, upsert: true, new: true});
             } else {
                 console.log("already present");
+                return null;
             }
         });
     }

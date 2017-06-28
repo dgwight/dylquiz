@@ -64,6 +64,7 @@
                 templateUrl: "views/user/user.html",
                 controller: "ProfileCtrl",
                 controllerAs: "model",
+                resolve: { loggedin: checkLoggedin }
             })
             .when("/createQuiz", {
                 templateUrl: "views/createQuiz/createQuizStart.html",
@@ -143,8 +144,6 @@
             })
             .otherwise({
                 templateUrl: "views/404/404.html",
-                // controller: "LoginCtrl",
-                // controllerAs: "model"
             });
     }
 

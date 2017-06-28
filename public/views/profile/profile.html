@@ -36,17 +36,11 @@
         </div>
     </div>
 
-    <div class="panel panel-default" ng-show="model.buddyRequests.length">
-        <div class="panel-heading">Buddy Requests</div>
+    <div class="panel panel-default" ng-show="model.following.length">
+        <div class="panel-heading">Following</div>
         <div class="list-group">
-            <a class="list-group-item" ng-repeat="buddyRequest in model.buddyRequests" href="#/user/{{buddyRequest._id}}">
-                {{buddyRequest.username}}
-                <div class="pull-right">
-                    <button ng-click="model.acceptBuddyRequest(buddyRequest._id)"
-                            class="btn btn-primary btn-xs glyphicon glyphicon-ok"></button>
-                    <button ng-click="model.removeBuddyRequest(buddyRequest._id)"
-                            class="btn btn-danger btn-xs glyphicon glyphicon-remove"></button>
-                </div>
+            <a class="list-group-item" ng-repeat="follow in model.following" href="#/user/{{follow._id}}">
+                {{follow.username}}
             </a>
         </div>
     </div>

@@ -8,12 +8,8 @@
             const vm = this;
             vm.currentUser = $rootScope.currentUser;
             vm.uid = $routeParams.uid;
-            vm.sendBuddyRequest = sendBuddyRequest;
-            vm.removeBuddyRequest = removeBuddyRequest;
-            vm.acceptBuddyRequest = acceptBuddyRequest;
-            vm.removeBuddy = removeBuddy;
-            vm.isBuddyRequestSent = isBuddyRequestSent;
-            vm.isBuddy = isBuddy;
+            vm.tappedFollowButton = tappedFollowButton;
+            vm.isFollowing = isFollowing;
             vm.buddyButtonText = buddyButtonText;
 
             function init() {
@@ -23,7 +19,7 @@
                         vm.records = records.filter((record) => record.published);
                     });
 
-                    loadBuddies(user);
+                    loadFollowers(user);
                 }).catch((error) => {
                     console.log(error);
                 });
@@ -31,56 +27,39 @@
 
             init();
 
-            function isBuddyRequestSent() {
+            function isFollowing() {
                 if (vm.user && vm.currentUser) {
-                    var i = vm.user.buddyRequests.indexOf(vm.currentUser._id);
-                    console.log(i);
-                    return i > -1;
-                }
-                return false;
-            }
-
-            function isBuddy() {
-                if (vm.user && vm.currentUser) {
-                    var i = vm.buddies.indexOf(vm.currentUser._id);
-                    console.log(i);
+                    console.log(vm.currentUser);
+                    var i = vm.currentUser.following.indexOf(vm.user._id);
                     return i > -1;
                 }
                 return false;
             }
 
             function buddyButtonText() {
-                if (vm.isBuddy()) {
-                    return "Buddies"
-                } else if (vm.isBuddyRequestSent()) {
-                    return "Buddy Request Sent"
+                if (vm.isFollowing()) {
+                    return "Unfollow"
                 } else {
-                    return "Add Buddy"
+                    return "Follow"
                 }
             }
 
-            function sendBuddyRequest(userId) {
-                UserService.sendBuddyRequest(userId).then((user) => {
-                    loadBuddies(user);
-                });
-            }
-
-            function acceptBuddyRequest(userId) {
-                UserService.acceptBuddyRequest(userId).then((user) => {
-                    loadBuddies(user);
-                });
-            }
-
-            function removeBuddyRequest(userId) {
-                UserService.removeBuddyRequest(userId).then((user) => {
-                    loadBuddies(user);
-                });
-            }
-
-            function removeBuddy(userId) {
-                UserService.removeBuddy(userId).then((user) => {
-                    loadBuddies(user);
-                });
+            function tappedFollowButton(userId) {
+                if (vm.isFollowing()) {
+                    UserService.unfollow(userId).then((user) => {
+                        return UserService.findById(vm.currentUser._id);
+                    }).then((currentUser) => {
+                        vm.currentUser = currentUser;
+                        console.log("currentUser", currentUser);
+                    });
+                } else {
+                    UserService.follow(userId).then((user) => {
+                        return UserService.findById(vm.currentUser._id);
+                    }).then((currentUser) => {
+                        vm.currentUser = currentUser;
+                        console.log("currentUser", currentUser);
+                    });
+                }
             }
 
             function getUser() {
@@ -91,15 +70,10 @@
                 }
             }
 
-            function loadBuddies(user) {
-                UserService.getBuddyRequests(user._id).then((buddyRequests) => {
-                    console.log("buddyRequests", buddyRequests);
-                    vm.buddyRequests = buddyRequests;
-                });
-
-                UserService.getBuddies(vm.user._id).then((buddies) => {
-                    console.log("buddies", buddies);
-                    vm.buddies = buddies;
+            function loadFollowers(user) {
+                UserService.getFollowing(user._id).then((following) => {
+                    console.log("following", following);
+                    vm.following = following;
                 });
             }
         });
