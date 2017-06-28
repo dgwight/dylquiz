@@ -20,13 +20,9 @@ function UserRouter(app) {
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
     passport.use(new LocalStrategy(localStrategy));
 
-    app.post('/api/user/:uid/send-buddy-request', sendBuddyRequest);
-    app.post('/api/user/:uid/accept-buddy-request', acceptBuddyRequest);
-    app.post('/api/user/:uid/remove-buddy-request', removeBuddyRequest);
-    app.post('/api/user/:uid/remove-buddy', removeBuddy);
-
-    app.get('/api/user/:uid/get-buddy-requests', getBuddyRequests);
-    app.get('/api/user/:uid/get-buddies', getBuddies);
+    app.post('/api/user/:uid/follow', follow);
+    app.post('/api/user/:uid/unfollow', unfollow);
+    app.get('/api/user/:uid/get-wall', getWall);
 
     app.post  ('/api/login', passport.authenticate('local'), login);
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
@@ -38,56 +34,56 @@ function UserRouter(app) {
     app.post ('/api/register', register);
     app.get ('/api/loggedin', loggedin);
 
-    function sendBuddyRequest(req, res) {
+    function follow(req, res) {
         console.log(req.url, req.user);
         if (!req.user) {
             res.sendStatus(403);
             return;
         }
 
-        UserService.sendBuddyRequest(req.params.uid, req.user._id).then((err, doc) => UserRouter.respond(err, doc, res));
+        UserService.follow(req.params.uid, req.user._id).then((err, doc) => UserRouter.respond(err, doc, res));
     }
 
-    function acceptBuddyRequest(req, res) {
+    function unfollow(req, res) {
         console.log(req.url, req.user);
         if (!req.user) {
             res.sendStatus(403);
             return;
         }
 
-        UserService.acceptBuddyRequest(req.user._id, req.params.uid).then((err, doc) => UserRouter.respond(err, doc, res));
+        UserService.unfollow(req.user._id, req.params.uid).then((err, doc) => UserRouter.respond(err, doc, res));
     }
 
-    function removeBuddyRequest(req, res) {
+    function getWall(req, res) {
         console.log(req.url, req.user);
         if (!req.user) {
             res.sendStatus(403);
             return;
         }
 
-        UserService.removeBuddyRequest(req.user._id, req.params.uid).then((err, doc) => UserRouter.respond(err, doc, res));
+        UserService.getWall(req.user._id).then((err, doc) => UserRouter.respond(err, doc, res));
     }
 
-    function removeBuddy(req, res) {
-        console.log(req.url, req.user);
-        if (!req.user) {
-            res.sendStatus(403);
-            return;
-        }
-
-        UserService.removeBuddy(req.user._id, req.params.uid).then((err, doc) => UserRouter.respond(err, doc, res));
-    }
-
-    function getBuddyRequests(req, res) {
-        console.log(req.url, req.user);
-        UserService.getBuddyRequests(req.params.uid)
-            .then((err, doc) => UserRouter.respond(err, doc, res));
-    }
-
-    function getBuddies(req, res) {
-        console.log(req.url, req.user);
-        UserService.getBuddies(req.params.uid)
-            .then((err, doc) => UserRouter.respond(err, doc, res));
+    // function removeBuddy(req, res) {
+    //     console.log(req.url, req.user);
+    //     if (!req.user) {
+    //         res.sendStatus(403);
+    //         return;
+    //     }
+    //
+    //     UserService.removeBuddy(req.user._id, req.params.uid).then((err, doc) => UserRouter.respond(err, doc, res));
+    // }
+    //
+    // function getBuddyRequests(req, res) {
+    //     console.log(req.url, req.user);
+    //     UserService.getBuddyRequests(req.params.uid)
+    //         .then((err, doc) => UserRouter.respond(err, doc, res));
+    // }
+    //
+    // function getBuddies(req, res) {
+    //     console.log(req.url, req.user);
+    //     UserService.getBuddies(req.params.uid)
+    //         .then((err, doc) => UserRouter.respond(err, doc, res));
     }
 
     function localStrategy(username, password, done) {

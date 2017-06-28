@@ -38,29 +38,29 @@
 
     <div class="panel panel-default" ng-show="model.buddyRequests.length">
         <div class="panel-heading">Buddy Requests</div>
-        <ul class="list-group">
-            <li class="list-group-item" ng-repeat="buddyRequest in model.buddyRequests">
-                {{buddyRequest._id}}
+        <div class="list-group">
+            <a class="list-group-item" ng-repeat="buddyRequest in model.buddyRequests" href="#/user/{{buddyRequest._id}}">
+                {{buddyRequest.username}}
                 <div class="pull-right">
                     <button ng-click="model.acceptBuddyRequest(buddyRequest._id)"
                             class="btn btn-primary btn-xs glyphicon glyphicon-ok"></button>
                     <button ng-click="model.removeBuddyRequest(buddyRequest._id)"
                             class="btn btn-danger btn-xs glyphicon glyphicon-remove"></button>
                 </div>
-            </li>
-        </ul>
+            </a>
+        </div>
     </div>
 
     <div class="panel panel-default" ng-show="model.buddies.length">
         <div class="panel-heading">Buddies</div>
-        <ul class="list-group">
-            <li class="list-group-item" ng-repeat="buddy in model.buddies">
-                {{buddy._id}}
+        <div class="list-group">
+            <a class="list-group-item" ng-repeat="buddy in model.buddies" href="#/user/{{buddy._id}}">
+                {{buddy.username}}
                 <div class="pull-right">
                     <button ng-click="model.removeBuddy(buddy._id)"
                             class="btn btn-danger btn-xs glyphicon glyphicon-remove"></button>
                 </div>
-            </li>
-        </ul>
+            </a>
+        </div>
     </div>
 </div>

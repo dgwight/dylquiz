@@ -14,8 +14,7 @@ const UserSchema = mongoose.Schema({
         id:    String,
         token: String
     },
-    buddies: [String],
-    buddy_requests: [String],
+    following: [String],
     algolia_id: String,
     imageUrl: String,
     admin: {type: Boolean, default: false},

@@ -2,9 +2,9 @@
 
 <div class="container">
     <button ng-click="model.sendBuddyRequest(model.user._id)"
-       ng-hide="model.currentUser._id == model.user._id"
-            ng-disabled="true"
-       class="btn btn-default btn-s pull-right"> Add Buddy</button>
+            ng-hide="model.currentUser._id == model.user._id"
+            ng-disabled="model.isBuddyRequestSent() || model.isBuddy()"
+            class="btn btn-default btn-s pull-right">{{model.buddyButtonText()}}</button>
     <div class="media">
         <div>
             <img class="media-object img-rounded" ng-src="{{model.user.imageUrl}}" width="140"
@@ -36,10 +36,10 @@
 
     <div class="panel panel-default" ng-show="model.buddies.length">
         <div class="panel-heading">Buddies</div>
-        <ul class="list-group">
-            <li class="list-group-item" ng-repeat="buddy in model.buddies">
-                {{buddy._id}}
-            </li>
-        </ul>
+        <div class="list-group">
+            <a class="list-group-item" ng-repeat="buddy in model.buddies" href="#/user/{{buddy._id}}">
+                {{buddy.username}}
+            </a>
+        </div>
     </div>
 </div>

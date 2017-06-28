@@ -12,6 +12,9 @@
             vm.removeBuddyRequest = removeBuddyRequest;
             vm.acceptBuddyRequest = acceptBuddyRequest;
             vm.removeBuddy = removeBuddy;
+            vm.isBuddyRequestSent = isBuddyRequestSent;
+            vm.isBuddy = isBuddy;
+            vm.buddyButtonText = buddyButtonText;
 
             function init() {
                 getUser().then((user) => {
@@ -27,6 +30,34 @@
             }
 
             init();
+
+            function isBuddyRequestSent() {
+                if (vm.user && vm.currentUser) {
+                    var i = vm.user.buddyRequests.indexOf(vm.currentUser._id);
+                    console.log(i);
+                    return i > -1;
+                }
+                return false;
+            }
+
+            function isBuddy() {
+                if (vm.user && vm.currentUser) {
+                    var i = vm.buddies.indexOf(vm.currentUser._id);
+                    console.log(i);
+                    return i > -1;
+                }
+                return false;
+            }
+
+            function buddyButtonText() {
+                if (vm.isBuddy()) {
+                    return "Buddies"
+                } else if (vm.isBuddyRequestSent()) {
+                    return "Buddy Request Sent"
+                } else {
+                    return "Add Buddy"
+                }
+            }
 
             function sendBuddyRequest(userId) {
                 UserService.sendBuddyRequest(userId).then((user) => {
@@ -62,10 +93,12 @@
 
             function loadBuddies(user) {
                 UserService.getBuddyRequests(user._id).then((buddyRequests) => {
+                    console.log("buddyRequests", buddyRequests);
                     vm.buddyRequests = buddyRequests;
                 });
 
                 UserService.getBuddies(vm.user._id).then((buddies) => {
+                    console.log("buddies", buddies);
                     vm.buddies = buddies;
                 });
             }

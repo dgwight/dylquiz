@@ -13,12 +13,9 @@ function UserService () {
     const UserModel = mongoose.model("User", UserSchema);
     const UserService = new CommonService(UserModel);
     UserService.findByFacebookId = findByFacebookId;
-    UserService.sendBuddyRequest = sendBuddyRequest;
-    UserService.removeBuddyRequest = removeBuddyRequest;
-    UserService.removeBuddy = removeBuddy;
-    UserService.acceptBuddyRequest = acceptBuddyRequest;
-    UserService.getBuddyRequests = getBuddyRequests;
-    UserService.getBuddies = getBuddies;
+    UserService.follow = follow;
+    UserService.unfollow = unfollow;
+    UserService.getWall = getWall;
     UserService.create = create;
     UserService.update = update;
     UserService.remove = remove;
@@ -29,43 +26,20 @@ function UserService () {
         return UserModel.findOne({'facebook.id': facebookId});
     }
 
-    function sendBuddyRequest(userId, requesterId) {
-        return UserService.add(userId, requesterId, "buddy_requests");
+    function follow(userId, followId) {
+        return UserService.add(userId, followId, "following");
     }
 
-    function acceptBuddyRequest(userId, requesterId) {
-        console.log("acceptBuddyRequest", userId, requesterId);
-        return UserService.removeFrom(userId, requesterId, "buddy_requests").then((user) => {
-            return UserService.add(requesterId, userId, "buddies");
-        }).then((user) => {
-            return UserService.add(userId, requesterId, "buddies");
-        });
+    function unfollow(userId, followId) {
+        console.log("unfollow", userId, followId);
+        return UserService.removeFrom(userId, followId, "following");
     }
 
-    function removeBuddyRequest(userId, requesterId) {
-        console.log("removeBuddyRequest", userId, requesterId);
-        return UserService.removeFrom(userId, requesterId, "buddy_requests");
-    }
-
-    function removeBuddy(userId, buddyId) {
-        console.log("removeBuddy", userId, buddyId);
-        return UserService.removeFrom(buddyId, userId, "buddies").then(() => {
-            return UserService.removeFrom(userId, buddyId, "buddies");
-        });
-    }
-
-    function getBuddyRequests(userId) {
+    function getWall(userId) {
+        console.log("getWall", userId);
         return UserModel.findById(userId).then((user) => {
-            return UserModel.find({
-                '_id': { $in: user.buddy_requests }
-            });
-        });
-    }
-
-    function getBuddies(userId) {
-        return UserModel.findById(userId).then((user) => {
-            return UserModel.find({
-                '_id': { $in: user.buddies }
+            return RecordService.model.find({
+                '_user': { $in: user.following }
             });
         });
     }
