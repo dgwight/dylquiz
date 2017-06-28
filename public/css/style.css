@@ -111,15 +111,14 @@ body {
     align-items: center;
     width: 100%; }
 .aa-suggestion span:first-child {
+    text-transform: uppercase;
     color: #333; }
 .aa-suggestion span:last-child {
-    text-transform: uppercase;
     color: #a9a9a9; }
 .aa-suggestion img {
     max-width: 80px;
     margin-right: 10px; }
 .aa-suggestions-category {
-    text-transform: uppercase;
     border-bottom: 2px solid rgba(228, 228, 228, 0.6);
     border-top: 2px solid rgba(228, 228, 228, 0.6);
     padding: 10px;
